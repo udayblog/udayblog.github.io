@@ -1,7 +1,0 @@
----
-title: "Second"
-date: 2021-08-24T19:27:49+01:00
-draft: false
----
-
-* Another post for the second
