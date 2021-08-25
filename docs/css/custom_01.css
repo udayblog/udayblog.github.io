@@ -1,0 +1,14 @@
+code[class*="language-"],
+pre[class*="language-"] {
+	font-family: Input Mono;
+}
+
+[class*='lang-'] script[type='text/plain'],
+[class*='language-'] script[type='text/plain'],
+script[type='text/plain'][class*='lang-'],
+script[type='text/plain'][class*='language-'] {
+	font: 100% Input Mono;
+}
+
+
+

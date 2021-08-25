@@ -1,0 +1,19 @@
+{
+  "baseURL": "https://udayblog.github.io/",
+  "languageCode": "en",
+  "title": "Uday",
+  "theme": "cupper-hugo-theme",
+  "publishDir": "docs",
+  "menu": {
+    "nav": [
+      {
+        "name": "Home",
+        "url": "/post/"
+      },
+      {
+        "name": "Blog",
+        "url": "/post/"
+      }
+    ]
+  }
+}
