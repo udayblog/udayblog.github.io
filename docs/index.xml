@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Uday</title>
-    <link>http://localhost:1313/post/</link>
+    <link>https://udayblog.github.io/</link>
     <description>Recent content on Uday</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://udayblog.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello</title>
-      <link>http://localhost:1313/post/post/hello/</link>
+      <link>https://udayblog.github.io/post/hello/</link>
       <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/post/hello/</guid>
+      <guid>https://udayblog.github.io/post/hello/</guid>
       <description>I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I hoping that one day, I might combine both blogs at one single place. More interesting content to follow.</description>
     </item>
     
