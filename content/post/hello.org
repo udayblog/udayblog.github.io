@@ -1,0 +1,6 @@
+#+TITLE: Hello
+#+date: <2021-08-26 Thu>
+I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about.
+This time I am trying to revive the habit of writing and making it more frequent.
+I am getting my hands dirty with emacs org mode which is what I am using to post this.
+I hoping that one day, I might combine both blogs at one single place. More interesting content to follow.
