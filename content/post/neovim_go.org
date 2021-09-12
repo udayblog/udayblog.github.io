@@ -1,0 +1,209 @@
+#+TITLE: Go development setup with Neovim
+#+date: <2021-09-12 Sun> 
+
+Before I start writing this post, I have a confession to make. I never thought I would be writing a post about
+an editor and it’s configuration, yet here I am writing about one of the most renowned editors, *neovim*. There are numerous
+posts about neovim and its configuration out there, but there is always scope for one more blog post.
+
+The goal of this post is to setup neovim for go development quickly; I won't go into detailing about each plugin and custom mappings.
+
+Though there is packer for managing packages in neovim, I stick with *vim-plug* for plugin management
+
+* Steps
+  - Create configuration files with the following commands:
+    #+begin_src shell
+    touch ~/.config/nvim/init.vim
+    touch ~/.config/nvim/mappings.vim
+    touch ~/.config/nvim/plugins.vim
+    touch ~/.config/nvim/nerdtree.vim
+    mkdir -p lua/config
+    touch ~/.config/nvim/lua/config/telescope.lua
+    touch ~/.config/nvim/lua/config/golsp.lua
+    #+end_src
+  - Contents of ~/.config/nvim/init.vim
+    #+begin_src shell
+    source ~/.config/nvim/plugins.vim
+    source ~/.config/nvim/mappings.vim
+    source ~/.config/nvim/nerdtree.vim
+    #+end_src
+  - Contents of ~/.config/nvim/plugins.vim
+    #+begin_src shell
+      call plug#begin('~/.config/nvim/plugged')
+      Plug 'scrooloose/nerdtree'
+      Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+      Plug 'junegunn/fzf.vim'
+      Plug 'vim-airline/vim-airline'
+      Plug 'vim-airline/vim-airline-themes'
+      Plug 'tpope/vim-fugitive'
+      Plug 'airblade/vim-gitgutter'
+      Plug 'chriskempson/base16-vim'
+      Plug 'nvim-lua/popup.nvim'
+      Plug 'nvim-lua/plenary.nvim'
+      Plug 'nvim-telescope/telescope.nvim'
+      Plug 'neovim/nvim-lspconfig'
+      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+      Plug 'simrat39/symbols-outline.nvim'
+      Plug 'ray-x/lsp_signature.nvim'
+      Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+      Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+      call plug#end()
+      #+end_src shell
+      
+  - Contents of ~/.config/nvim/mappings.vim
+  #+begin_src shell
+  let mapleader="\<space>"
+  
+  set nu rnu
+  set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+  
+  map <C-s> :w<CR>
+  imap <C-s> <Esc>:w<CR>i
+  
+  let g:coq_settings = { 'auto_start': v:true }
+  
+  :lua vim.o.completeopt = 'menuone,noselect'
+  autocmd BufWritePre *.go lua gofmt(1000)
+  
+  #+end_src
+
+  
+  - Contents of ~/.config/nvim/nerdtree.vim
+  #+begin_src shell
+   nnoremap <C-n> :NERDTreeToggle<CR>
+   let g:NERDTreeWinPos = "right"
+    
+  #+end_src
+
+  - Contents of ~/.config/nvim/lua/config/telescope.lua
+  #+begin_src lua
+require'telescope'.setup {
+  preview_cutoff = 5
+}
+
+local opts = {}
+
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+local keymap = vim.api.nvim_set_keymap
+keymap('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>', opts)
+keymap('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>', opts)
+keymap('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>', opts)
+keymap('n', '<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>', opts)
+    
+  #+end_src
+
+  
+  - Contents of ~/.config/nvim/lua/config/golsp.lua
+  #+begin_src lua
+local nvim_lsp = require 'lspconfig'
+local coq = require "coq"
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach =  function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=false }
+  -- local opts = {}
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+  require 'lsp_signature'.on_attach({
+    bind = true,
+    zindex = 200,
+    doc_lines = 0
+  }, bufnr)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+nvim_lsp.gopls.setup( 
+coq.lsp_ensure_capabilities({
+  on_attach = on_attach,
+  cmd = {"gopls"},
+  settings = {
+    analyses = {
+      unusedparams = true,
+    },
+    staticcheck = true,
+    usePlaceholders = true,
+    gofumpt = true,
+  }
+})
+)
+
+
+
+function gofmt(timeout_ms)
+  goimports(timeout_ms)
+  vim.lsp.buf.formatting()
+end
+
+
+function goimports(timeout_ms)
+    local context = { only = { "source.organizeImports" } }
+    vim.validate { context = { context, "t", true } }
+
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+
+    -- See the implementation of the textDocument/codeAction callback
+    -- (lua/vim/lsp/handler.lua) for how to do this properly.
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+    if not result or next(result) == nil then return end
+    local actions = result[1].result
+    if not actions then return end
+    local action = actions[1]
+
+    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
+    -- is a CodeAction, it can have either an edit, a command or both. Edits
+    -- should be executed first.
+    if action.edit or type(action.command) == "table" then
+      if action.edit then
+        vim.lsp.util.apply_workspace_edit(action.edit)
+      end
+      if type(action.command) == "table" then
+        vim.lsp.buf.execute_command(action.command)
+      end
+    else
+      vim.lsp.buf.execute_command(action)
+    end
+end
+
+  #+end_src
+  
+    
+once you have all the files ready
+
+- open neovim
+- type :PlugInstall
+- type COQdeps
+
+Now, you should be ready for go development in neovim.
+
+     
+    
+
+    
