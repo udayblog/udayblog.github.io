@@ -8,7 +8,7 @@
     "nav": [
       {
         "name": "Home",
-        "url": "/post/"
+        "url": "/"
       },
       {
         "name": "Blog",

@@ -195,13 +195,18 @@ end
   #+end_src
   
     
-once you have all the files ready
+Once you have all the files ready
 
-- open neovim
+- Open neovim
 - type :PlugInstall
-- type COQdeps
+- type :COQdeps
 
 Now, you should be ready for go development in neovim.
+
+Couple of shortcuts to get you started:
+
+- <Ctrl> + n : Opens file browser
+- <Space> + ff : Search for a file
 
      
     
