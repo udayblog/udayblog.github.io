@@ -1,0 +1,13 @@
+baseURL: https://udayblog.github.io/
+languageCode: en
+title: Uday
+theme: PaperMod
+publishDir: docs
+menu:
+  main:
+    - name: Home
+      url: /
+    - name: Blog
+      url: /post/
+pygmentscodefences: true
+pygmentscodefencesguesssyntax: true
