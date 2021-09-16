@@ -1,6 +1,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	font-family: Input Mono;
+  padding: 0em;
 }
 
 [class*='lang-'] script[type='text/plain'],
@@ -9,16 +10,9 @@ script[type='text/plain'][class*='lang-'],
 script[type='text/plain'][class*='language-'] {
 	font: 100% Input Mono;
   padding: none;
+  background-color: none;
 }
 
-div.highlight {
-    background: none;
-    padding: 0em;
-    /*
-    padding: 0.0625rem 0.33rem;
-    border-radius: 0.5rem;
-    */
-}
 
 
 

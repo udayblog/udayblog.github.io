@@ -4,6 +4,11 @@
   "title": "Uday",
   "theme": "cupper-hugo-theme",
   "publishDir": "docs",
+  "params": {
+    "customCss":[
+      "css/custom_01.css"
+    ]
+  },
   "menu": {
     "nav": [
       {
