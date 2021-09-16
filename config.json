@@ -2,7 +2,7 @@
   "baseURL": "https://udayblog.github.io/",
   "languageCode": "en",
   "title": "Uday",
-  "theme": "cupper-hugo-theme",
+  "theme": "ezhil",
   "publishDir": "docs",
   "menu": {
     "nav": [
@@ -15,5 +15,8 @@
         "url": "/post/"
       }
     ]
-  }
+  },
+  "pygmentsstyle" : "solarized-dark",
+  "pygmentscodefences" : true,
+  "pygmentscodefencesguesssyntax" : true
 }
