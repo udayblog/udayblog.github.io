@@ -22,9 +22,13 @@ Though there is packer for managing packages in neovim, I stick with *vim-plug* 
     #+end_src
   - Contents of ~/.config/nvim/init.vim
     #+begin_src shell
-    source ~/.config/nvim/plugins.vim
-    source ~/.config/nvim/mappings.vim
-    source ~/.config/nvim/nerdtree.vim
+      source ~/.config/nvim/plugins.vim
+      source ~/.config/nvim/mappings.vim
+      source ~/.config/nvim/nerdtree.vim
+      
+      :lua require('config/telescope')
+      :lua require('config/golsp')
+      
     #+end_src
   - Contents of ~/.config/nvim/plugins.vim
     #+begin_src shell
