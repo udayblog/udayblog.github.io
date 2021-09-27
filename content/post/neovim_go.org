@@ -162,7 +162,7 @@ coq.lsp_ensure_capabilities({
 
 function gofmt(timeout_ms)
   goimports(timeout_ms)
-  vim.lsp.buf.formatting()
+  vim.lsp.buf.formatting_sync()
 end
 
 
