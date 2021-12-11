@@ -5,11 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Hello | Uday</title>
+<title>Dotfiles management with gnu stow | Uday</title>
 <meta name="keywords" content="" />
-<meta name="description" content="I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place.">
+<meta name="description" content="I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+ I wont go into details of my previous workflow but focus on how to use gnu stow.
+ Let us walk through an example of using stow for neovim dotfiles.
+ Create a git repository to hold dotfiles">
 <meta name="author" content="">
-<link rel="canonical" href="https://udayblog.github.io/post/hello/" />
+<link rel="canonical" href="https://udayblog.github.io/post/dotfiles/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.9f1d947375927e9847272b1f4e9be81336f539e513bf04d52cade31f81cad1af.css" integrity="sha256-nx2Uc3WSfphHJysfTpvoEzb1OeUTvwTVLK3jH4HK0a8=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -57,16 +60,22 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Hello" />
-<meta property="og:description" content="I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place." />
+</noscript><meta property="og:title" content="Dotfiles management with gnu stow" />
+<meta property="og:description" content="I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+ I wont go into details of my previous workflow but focus on how to use gnu stow.
+ Let us walk through an example of using stow for neovim dotfiles.
+ Create a git repository to hold dotfiles" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://udayblog.github.io/post/hello/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-08-26T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-08-26T00:00:00&#43;00:00" />
+<meta property="og:url" content="https://udayblog.github.io/post/dotfiles/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-12-11T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-12-11T00:00:00&#43;00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hello"/>
-<meta name="twitter:description" content="I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place."/>
+<meta name="twitter:title" content="Dotfiles management with gnu stow"/>
+<meta name="twitter:description" content="I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+ I wont go into details of my previous workflow but focus on how to use gnu stow.
+ Let us walk through an example of using stow for neovim dotfiles.
+ Create a git repository to hold dotfiles"/>
 
 
 <script type="application/ld+json">
@@ -83,8 +92,8 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Hello",
-      "item": "https://udayblog.github.io/post/hello/"
+      "name": "Dotfiles management with gnu stow",
+      "item": "https://udayblog.github.io/post/dotfiles/"
     }
   ]
 }
@@ -93,20 +102,20 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Hello",
-  "name": "Hello",
-  "description": "I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place.",
+  "headline": "Dotfiles management with gnu stow",
+  "name": "Dotfiles management with gnu stow",
+  "description": "I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.\n I wont go into details of my previous workflow but focus on how to use gnu stow.\n Let us walk through an example of using stow for neovim dotfiles.\n Create a git repository to hold dotfiles",
   "keywords": [
     
   ],
-  "articleBody": "I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place. More interesting content to follow.\n",
-  "wordCount" : "76",
+  "articleBody": " I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.\n I wont go into details of my previous workflow but focus on how to use gnu stow.\n Let us walk through an example of using stow for neovim dotfiles.\n Create a git repository to hold dotfiles\nmkdir -p ~/go/src/github.com/me/dotfiles   Create directory for neovim\nmkdir -p ~/go/src/github.com/me/dotfiles/neovim/.config/nvim   Go ahead and create your configuration files\n For starter, you init.vim file will be placed under touch ~/go/src/github.com/me/dotfiles/neovim/.config/nvim/init.vim'   Once you have the configuration files, you can execute\nstow -t ~ ~/go/src/github.com/me/dotfiles/neovim   Above command will create link to configuration folder\n~/.config/nvim   stow basically creates a symbolic link for the folders that are present under your specified directory ( ~/go/src/github.com/me/dotfiles/neovim) in the target directory (~)\n",
+  "wordCount" : "143",
   "inLanguage": "en",
-  "datePublished": "2021-08-26T00:00:00Z",
-  "dateModified": "2021-08-26T00:00:00Z",
+  "datePublished": "2021-12-11T00:00:00Z",
+  "dateModified": "2021-12-11T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://udayblog.github.io/post/hello/"
+    "@id": "https://udayblog.github.io/post/dotfiles/"
   },
   "publisher": {
     "@type": "Organization",
@@ -179,15 +188,48 @@
   <header class="post-header">
     
     <h1 class="post-title">
-      Hello
+      Dotfiles management with gnu stow
     </h1>
-    <div class="post-meta">August 26, 2021
+    <div class="post-meta">December 11, 2021
 </div>
   </header> 
-  <div class="post-content"><p>I used to blog not so frequently at <a href="https://experience-themaster.blogspot.com/">https://experience-themaster.blogspot.com/</a> and that has stopped as I had little time to write about.
-This time I am trying to revive the habit of writing and making it more frequent.
-I am getting my hands dirty with emacs org mode which is what I am using to post this.
-I am hoping that one day, I might combine both blogs at one single place. More interesting content to follow.</p>
+  <div class="post-content"><p>
+I used to manage my dotfiles in a git repository and add symbolic links manually.
+Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.</p>
+<p>
+I wont go into details of my previous workflow but focus on how to use gnu stow.</p>
+<p>
+Let us walk through an example of using stow for neovim dotfiles.</p>
+<p>
+Create a git repository to hold dotfiles</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mkdir -p ~/go/src/github.com/me/dotfiles</code></pre></div>
+</div>
+<p>
+Create directory for neovim</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mkdir -p ~/go/src/github.com/me/dotfiles/neovim/.config/nvim</code></pre></div>
+</div>
+<p>
+Go ahead and create your configuration files</p>
+<p>
+For starter, you init.vim file will be placed under </p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">touch ~/go/src/github.com/me/dotfiles/neovim/.config/nvim/init.vim<span style="color:#960050;background-color:#1e0010">&#39;</span></code></pre></div>
+</div>
+<p>
+Once you have the configuration files, you can execute</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">stow -t ~ ~/go/src/github.com/me/dotfiles/neovim</code></pre></div>
+</div>
+<p>
+Above command will create link to configuration folder</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">~/.config/nvim</code></pre></div>
+</div>
+<p>
+stow basically creates a symbolic link for the folders that are present under your specified directory ( <em>~/go/src/github.com/me/dotfiles/neovim</em>)
+in the target directory (<em>~</em>)</p>
 
 
   </div>

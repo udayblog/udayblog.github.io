@@ -1,0 +1,49 @@
+#+TITLE: Dotfiles management with gnu stow
+#+date: <2021-12-11 Sat>
+
+I used to manage my dotfiles in a git repository and add symbolic links manually.
+Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+
+I wont go into details of my previous workflow but focus on how to use gnu stow.
+
+Let us walk through an example of using stow for neovim dotfiles.
+
+Create a git repository to hold dotfiles
+
+#+begin_src shell
+mkdir -p ~/go/src/github.com/me/dotfiles
+#+end_src
+
+Create directory for neovim
+
+#+begin_src shell
+mkdir -p ~/go/src/github.com/me/dotfiles/neovim/.config/nvim
+#+end_src
+
+Go ahead and create your configuration files
+
+For starter, you init.vim file will be placed under 
+
+#+begin_src shell
+touch ~/go/src/github.com/me/dotfiles/neovim/.config/nvim/init.vim'
+#+end_src
+
+Once you have the configuration files, you can execute
+
+#+begin_src shell
+stow -t ~ ~/go/src/github.com/me/dotfiles/neovim
+#+end_src
+
+
+Above command will create link to configuration folder
+
+
+#+begin_src shell
+~/.config/nvim
+#+end_src
+
+stow basically creates a symbolic link for the folders that are present under your specified directory ( /~/go/src/github.com/me/dotfiles/neovim/)
+in the target directory (/~/)
+
+
+
