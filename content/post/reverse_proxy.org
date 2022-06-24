@@ -1,0 +1,26 @@
+#+TITLE: Logging client to server network traffic
+#+date: <2022-05-23 Mon>
+
+While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s).
+More often than not, you may want to see the data that is being sent from your application to other.
+This scenario may also occur when you have inherited/installed an application and would like to understand the client server request and response data.
+
+Based on your development language, it might be  possible to enable logging in verbose level and find out this detail.
+While this might work, it may always not be possible.
+
+For example you have inherited an application and that application does not offer logging capability.
+
+*netcat* comes in handy to set up quick reverse proxy and monitor the network traffic that is going from client application to the server application. Advantage is that you can use *netcat* with any program
+as long as you can configure the server endpoint.
+
+On Mac OS you can install *netcat* with a simple command
+
+#+begin_src shell
+brew install netcat
+#+end_src
+
+Once *netcat* is installed, you can start http reverse proxy as
+
+
+At this point of time, it is https everywhere and *netcat* got you covered in that scenario too. All you need to do is add a flag
+

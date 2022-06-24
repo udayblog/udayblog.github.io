@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, nofollow">
 <title>Go development setup with Neovim | Uday</title>
 <meta name="keywords" content="" />
 <meta name="description" content="Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.
- The goal of this post is to setup neovim for go development quickly; I won&#39;t go into detailing about each plugin and custom mappings.">
+The goal of this post is to setup neovim for go development quickly; I won&#39;t go into detailing about each plugin and custom mappings.">
 <meta name="author" content="">
-<link rel="canonical" href="https://udayblog.github.io/post/neovim_go/" />
+<link rel="canonical" href="http://localhost:1313/post/neovim_go/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.9f1d947375927e9847272b1f4e9be81336f539e513bf04d52cade31f81cad1af.css" integrity="sha256-nx2Uc3WSfphHJysfTpvoEzb1OeUTvwTVLK3jH4HK0a8=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://udayblog.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://udayblog.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://udayblog.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://udayblog.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://udayblog.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.90.1" />
+<meta name="generator" content="Hugo 0.100.2" />
 <noscript>
     <style>
         #theme-toggle,
@@ -58,69 +58,7 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Go development setup with Neovim" />
-<meta property="og:description" content="Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.
- The goal of this post is to setup neovim for go development quickly; I won&#39;t go into detailing about each plugin and custom mappings." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://udayblog.github.io/post/neovim_go/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-09-12T00:00:00&#43;00:00" />
-<meta property="article:modified_time" content="2021-09-12T00:00:00&#43;00:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Go development setup with Neovim"/>
-<meta name="twitter:description" content="Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.
- The goal of this post is to setup neovim for go development quickly; I won&#39;t go into detailing about each plugin and custom mappings."/>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://udayblog.github.io/post/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Go development setup with Neovim",
-      "item": "https://udayblog.github.io/post/neovim_go/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Go development setup with Neovim",
-  "name": "Go development setup with Neovim",
-  "description": "Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.\n The goal of this post is to setup neovim for go development quickly; I won\u0026#39;t go into detailing about each plugin and custom mappings.",
-  "keywords": [
-    
-  ],
-  "articleBody": "  Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.\n The goal of this post is to setup neovim for go development quickly; I won't go into detailing about each plugin and custom mappings.\n Though there is packer for managing packages in neovim, I stick with vim-plug for plugin management\nSteps    Create configuration files with the following commands:\ntouch ~/.config/nvim/init.vim touch ~/.config/nvim/mappings.vim touch ~/.config/nvim/plugins.vim touch ~/.config/nvim/nerdtree.vim mkdir -p lua/config touch ~/.config/nvim/lua/config/telescope.lua touch ~/.config/nvim/lua/config/golsp.lua    Contents of ~/.config/nvim/init.vim\nsource ~/.config/nvim/plugins.vim source ~/.config/nvim/mappings.vim source ~/.config/nvim/nerdtree.vim :lua require('config/telescope') :lua require('config/golsp')    Contents of ~/.config/nvim/plugins.vim\ncall plug#begin('~/.config/nvim/plugged') Plug 'scrooloose/nerdtree' Plug 'junegunn/fzf', { 'do': { - fzf#install() } } Plug 'junegunn/fzf.vim' Plug 'vim-airline/vim-airline' Plug 'vim-airline/vim-airline-themes' Plug 'tpope/vim-fugitive' Plug 'airblade/vim-gitgutter' Plug 'chriskempson/base16-vim' Plug 'nvim-lua/popup.nvim' Plug 'nvim-lua/plenary.nvim' Plug 'nvim-telescope/telescope.nvim' Plug 'neovim/nvim-lspconfig' Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} Plug 'simrat39/symbols-outline.nvim' Plug 'ray-x/lsp_signature.nvim' Plug 'ms-jpq/coq_nvim', {'branch': 'coq'} Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'} call plug#end()    Contents of ~/.config/nvim/mappings.vim\n  let mapleader=\"\\\" set nu rnu set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab map  :w imap  :wi let g:coq_settings = { 'auto_start': v:true } :lua vim.o.completeopt = 'menuone,noselect' autocmd BufWritePre *.go lua gofmt(1000)    Contents of ~/.config/nvim/nerdtree.vim\n  nnoremap  :NERDTreeToggle let g:NERDTreeWinPos = \"right\"    Contents of ~/.config/nvim/lua/config/telescope.lua\n  require'telescope'.setup { preview_cutoff = 5 } local opts = {} -- See `:help vim.lsp.*` for documentation on any of the below functions local keymap = vim.api.nvim_set_keymap keymap('n', 'ff', 'lua require(\"telescope.builtin\").find_files()', opts) keymap('n', 'fg', 'lua require(\"telescope.builtin\").live_grep()', opts) keymap('n', 'fb', 'lua require(\"telescope.builtin\").buffers()', opts) keymap('n', 'fh', 'lua require(\"telescope.builtin\").help_tags()', opts)    Contents of ~/.config/nvim/lua/config/golsp.lua\n  local nvim_lsp = require 'lspconfig' local coq = require \"coq\" -- Use an on_attach function to only map the following keys -- after the language server attaches to the current buffer local on_attach = function(client, bufnr) local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end --Enable completion triggered by  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc') -- Mappings. local opts = { noremap=true, silent=false } -- local opts = {} -- See `:help vim.lsp.*` for documentation on any of the below functions buf_set_keymap('n', 'gD', 'lua vim.lsp.buf.declaration()', opts) buf_set_keymap('n', 'gd', 'lua vim.lsp.buf.definition()', opts) buf_set_keymap('n', 'K', 'lua vim.lsp.buf.hover()', opts) buf_set_keymap('n', 'gi', 'lua vim.lsp.buf.implementation()', opts) buf_set_keymap('n', '', 'lua vim.lsp.buf.signature_help()', opts) buf_set_keymap('n', 'wa', 'lua vim.lsp.buf.add_workspace_folder()', opts) buf_set_keymap('n', 'wr', 'lua vim.lsp.buf.remove_workspace_folder()', opts) buf_set_keymap('n', 'wl', 'lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))', opts) buf_set_keymap('n', 'D', 'lua vim.lsp.buf.type_definition()', opts) buf_set_keymap('n', 'rn', 'lua vim.lsp.buf.rename()', opts) buf_set_keymap('n', 'ca', 'lua vim.lsp.buf.code_action()', opts) buf_set_keymap('n', 'gr', 'lua vim.lsp.buf.references()', opts) buf_set_keymap('n', 'e', 'lua vim.lsp.diagnostic.show_line_diagnostics()', opts) buf_set_keymap('n', '[d', 'lua vim.lsp.diagnostic.goto_prev()', opts) buf_set_keymap('n', ']d', 'lua vim.lsp.diagnostic.goto_next()', opts) buf_set_keymap('n', 'q', 'lua vim.lsp.diagnostic.set_loclist()', opts) buf_set_keymap('n', 'f', 'lua vim.lsp.buf.formatting()', opts) require 'lsp_signature'.on_attach({ bind = true, zindex = 200, doc_lines = 0 }, bufnr) end -- Use a loop to conveniently call 'setup' on multiple servers and -- map buffer local keybindings when the language server attaches nvim_lsp.gopls.setup( coq.lsp_ensure_capabilities({ on_attach = on_attach, cmd = {\"gopls\"}, settings = { analyses = { unusedparams = true, }, staticcheck = true, usePlaceholders = true, gofumpt = true, } }) ) function gofmt(timeout_ms) goimports(timeout_ms) vim.lsp.buf.formatting_sync() end function goimports(timeout_ms) local context = { only = { \"source.organizeImports\" } } vim.validate { context = { context, \"t\", true } } local params = vim.lsp.util.make_range_params() params.context = context -- See the implementation of the textDocument/codeAction callback -- (lua/vim/lsp/handler.lua) for how to do this properly. local result = vim.lsp.buf_request_sync(0, \"textDocument/codeAction\", params, timeout_ms) if not result or next(result) == nil then return end local actions = result[1].result if not actions then return end local action = actions[1] -- textDocument/codeAction can return either Command[] or CodeAction[]. If it -- is a CodeAction, it can have either an edit, a command or both. Edits -- should be executed first. if action.edit or type(action.command) == \"table\" then if action.edit then vim.lsp.util.apply_workspace_edit(action.edit) end if type(action.command) == \"table\" then vim.lsp.buf.execute_command(action.command) end else vim.lsp.buf.execute_command(action) end end   Once you have all the files ready\n  Open neovim\n  type :PlugInstall\n  type :COQdeps\n  Now, you should be ready for go development in neovim.\n Couple of shortcuts to get you started:\n   + n : Opens file browser\n   + ff : Search for a file\n    ",
-  "wordCount" : "700",
-  "inLanguage": "en",
-  "datePublished": "2021-09-12T00:00:00Z",
-  "dateModified": "2021-09-12T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://udayblog.github.io/post/neovim_go/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Uday",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://udayblog.github.io/favicon.ico"
-    }
-  }
-}
-</script>
+</noscript>
 </head>
 
 <body class="" id="top">
@@ -138,7 +76,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://udayblog.github.io/" accesskey="h" title="Uday (Alt + H)">Uday</a>
+            <a href="http://localhost:1313/" accesskey="h" title="Uday (Alt + H)">Uday</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -164,12 +102,12 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://udayblog.github.io/post/" title="Blog">
+                <a href="http://localhost:1313/post/" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="https://udayblog.github.io/" title="Home">
+                <a href="http://localhost:1313/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
@@ -205,223 +143,205 @@ Steps
 <li>
 <p>Create configuration files with the following commands:</p>
 <div class="src src-shell">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">touch ~/.config/nvim/init.vim
-touch ~/.config/nvim/mappings.vim
-touch ~/.config/nvim/plugins.vim
-touch ~/.config/nvim/nerdtree.vim
-mkdir -p lua/config
-touch ~/.config/nvim/lua/config/telescope.lua
-touch ~/.config/nvim/lua/config/golsp.lua</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>touch ~/.config/nvim/init.vim
+</span></span><span style="display:flex;"><span>touch ~/.config/nvim/mappings.vim
+</span></span><span style="display:flex;"><span>touch ~/.config/nvim/plugins.vim
+</span></span><span style="display:flex;"><span>touch ~/.config/nvim/nerdtree.vim
+</span></span><span style="display:flex;"><span>mkdir -p lua/config
+</span></span><span style="display:flex;"><span>touch ~/.config/nvim/lua/config/telescope.lua
+</span></span><span style="display:flex;"><span>touch ~/.config/nvim/lua/config/golsp.lua</span></span></code></pre></div>
 </div>
 </li>
 <li>
 <p>Contents of ~/.config/nvim/init.vim</p>
 <div class="src src-shell">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  source ~/.config/nvim/plugins.vim
-  source ~/.config/nvim/mappings.vim
-  source ~/.config/nvim/nerdtree.vim
-  
-  :lua require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;config/telescope&#39;</span><span style="color:#f92672">)</span>
-  :lua require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;config/golsp&#39;</span><span style="color:#f92672">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>  source ~/.config/nvim/plugins.vim
+</span></span><span style="display:flex;"><span>  source ~/.config/nvim/mappings.vim
+</span></span><span style="display:flex;"><span>  source ~/.config/nvim/nerdtree.vim
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  :lua require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;config/telescope&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  :lua require<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;config/golsp&#39;</span><span style="color:#f92672">)</span></span></span></code></pre></div>
 </div>
 </li>
 <li>
 <p>Contents of ~/.config/nvim/plugins.vim</p>
 <div class="src src-shell">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  call plug#begin<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;~/.config/nvim/plugged&#39;</span><span style="color:#f92672">)</span>
-  Plug <span style="color:#e6db74">&#39;scrooloose/nerdtree&#39;</span>
-  Plug <span style="color:#e6db74">&#39;junegunn/fzf&#39;</span>, <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;do&#39;</span>: <span style="color:#f92672">{</span> -&gt; fzf#install<span style="color:#f92672">()</span> <span style="color:#f92672">}</span> <span style="color:#f92672">}</span>
-  Plug <span style="color:#e6db74">&#39;junegunn/fzf.vim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;vim-airline/vim-airline&#39;</span>
-  Plug <span style="color:#e6db74">&#39;vim-airline/vim-airline-themes&#39;</span>
-  Plug <span style="color:#e6db74">&#39;tpope/vim-fugitive&#39;</span>
-  Plug <span style="color:#e6db74">&#39;airblade/vim-gitgutter&#39;</span>
-  Plug <span style="color:#e6db74">&#39;chriskempson/base16-vim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;nvim-lua/popup.nvim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;nvim-lua/plenary.nvim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;nvim-telescope/telescope.nvim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;neovim/nvim-lspconfig&#39;</span>
-  Plug <span style="color:#e6db74">&#39;nvim-treesitter/nvim-treesitter&#39;</span>, <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;do&#39;</span>: <span style="color:#e6db74">&#39;:TSUpdate&#39;</span><span style="color:#f92672">}</span>
-  Plug <span style="color:#e6db74">&#39;simrat39/symbols-outline.nvim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;ray-x/lsp_signature.nvim&#39;</span>
-  Plug <span style="color:#e6db74">&#39;ms-jpq/coq_nvim&#39;</span>, <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;branch&#39;</span>: <span style="color:#e6db74">&#39;coq&#39;</span><span style="color:#f92672">}</span>
-  Plug <span style="color:#e6db74">&#39;ms-jpq/coq.artifacts&#39;</span>, <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;branch&#39;</span>: <span style="color:#e6db74">&#39;artifacts&#39;</span><span style="color:#f92672">}</span>
-  call plug#end<span style="color:#f92672">()</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>  call plug#begin<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;~/.config/nvim/plugged&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;scrooloose/nerdtree&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;junegunn/fzf&#39;</span>, <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;do&#39;</span>: <span style="color:#f92672">{</span> -&gt; fzf#install<span style="color:#f92672">()</span> <span style="color:#f92672">}</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;junegunn/fzf.vim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;vim-airline/vim-airline&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;vim-airline/vim-airline-themes&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;tpope/vim-fugitive&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;airblade/vim-gitgutter&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;chriskempson/base16-vim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;nvim-lua/popup.nvim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;nvim-lua/plenary.nvim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;nvim-telescope/telescope.nvim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;neovim/nvim-lspconfig&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;nvim-treesitter/nvim-treesitter&#39;</span>, <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;do&#39;</span>: <span style="color:#e6db74">&#39;:TSUpdate&#39;</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;simrat39/symbols-outline.nvim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;ray-x/lsp_signature.nvim&#39;</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;ms-jpq/coq_nvim&#39;</span>, <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;branch&#39;</span>: <span style="color:#e6db74">&#39;coq&#39;</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  Plug <span style="color:#e6db74">&#39;ms-jpq/coq.artifacts&#39;</span>, <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;branch&#39;</span>: <span style="color:#e6db74">&#39;artifacts&#39;</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  call plug#end<span style="color:#f92672">()</span></span></span></code></pre></div>
 </div>
 </li>
-<li>
-<p>Contents of ~/.config/nvim/mappings.vim</p>
-</li>
+<li>Contents of ~/.config/nvim/mappings.vim</li>
 </ul>
 <div class="src src-shell">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">let mapleader<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\&lt;space&gt;&#34;</span>
-
-set nu rnu
-set tabstop<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> softtabstop<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> expandtab shiftwidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> smarttab
-
-map &lt;C-s&gt; :w&lt;CR&gt;
-imap &lt;C-s&gt; &lt;Esc&gt;:w&lt;CR&gt;i
-
-let g:coq_settings <span style="color:#f92672">=</span> <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;auto_start&#39;</span>: v:true <span style="color:#f92672">}</span>
-
-:lua vim.o.completeopt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;menuone,noselect&#39;</span>
-autocmd BufWritePre *.go lua gofmt<span style="color:#f92672">(</span>1000<span style="color:#f92672">)</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>let mapleader<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\&lt;space&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set nu rnu
+</span></span><span style="display:flex;"><span>set tabstop<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> softtabstop<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> expandtab shiftwidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> smarttab
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>map &lt;C-s&gt; :w&lt;CR&gt;
+</span></span><span style="display:flex;"><span>imap &lt;C-s&gt; &lt;Esc&gt;:w&lt;CR&gt;i
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>let g:coq_settings <span style="color:#f92672">=</span> <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;auto_start&#39;</span>: v:true <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:lua vim.o.completeopt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;menuone,noselect&#39;</span>
+</span></span><span style="display:flex;"><span>autocmd BufWritePre *.go lua gofmt<span style="color:#f92672">(</span>1000<span style="color:#f92672">)</span></span></span></code></pre></div>
 </div>
 <ul>
-<li>
-<p>Contents of ~/.config/nvim/nerdtree.vim</p>
-</li>
+<li>Contents of ~/.config/nvim/nerdtree.vim</li>
 </ul>
 <div class="src src-shell">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> nnoremap &lt;C-n&gt; :NERDTreeToggle&lt;CR&gt;
- let g:NERDTreeWinPos <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;right&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> nnoremap &lt;C-n&gt; :NERDTreeToggle&lt;CR&gt;
+</span></span><span style="display:flex;"><span> let g:NERDTreeWinPos <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;right&#34;</span></span></span></code></pre></div>
 </div>
 <ul>
-<li>
-<p>Contents of ~/.config/nvim/lua/config/telescope.lua</p>
-</li>
+<li>Contents of ~/.config/nvim/lua/config/telescope.lua</li>
 </ul>
 <div class="src src-lua">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lua" data-lang="lua">require<span style="color:#e6db74">&#39;telescope&#39;</span>.setup {
-preview_cutoff <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
-}
-
-<span style="color:#66d9ef">local</span> opts <span style="color:#f92672">=</span> {}
-
-<span style="color:#75715e">-- See `:help vim.lsp.*` for documentation on any of the below functions</span>
-<span style="color:#66d9ef">local</span> keymap <span style="color:#f92672">=</span> vim.api.nvim_set_keymap
-keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;ff&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).find_files()&lt;cr&gt;&#39;</span>, opts)
-keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;fg&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).live_grep()&lt;cr&gt;&#39;</span>, opts)
-keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;fb&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).buffers()&lt;cr&gt;&#39;</span>, opts)
-keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;fh&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).help_tags()&lt;cr&gt;&#39;</span>, opts)</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>require<span style="color:#e6db74">&#39;telescope&#39;</span>.setup {
+</span></span><span style="display:flex;"><span>preview_cutoff <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> opts <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- See `:help vim.lsp.*` for documentation on any of the below functions</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> keymap <span style="color:#f92672">=</span> vim.api.nvim_set_keymap
+</span></span><span style="display:flex;"><span>keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;ff&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).find_files()&lt;cr&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;fg&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).live_grep()&lt;cr&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;fb&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).buffers()&lt;cr&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;leader&gt;fh&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua require(&#34;telescope.builtin&#34;).help_tags()&lt;cr&gt;&#39;</span>, opts)</span></span></code></pre></div>
 </div>
 <ul>
-<li>
-<p>Contents of ~/.config/nvim/lua/config/golsp.lua</p>
-</li>
+<li>Contents of ~/.config/nvim/lua/config/golsp.lua</li>
 </ul>
 <div class="src src-lua">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lua" data-lang="lua"><span style="color:#66d9ef">local</span> nvim_lsp <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#39;lspconfig&#39;</span>
-<span style="color:#66d9ef">local</span> coq <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#34;coq&#34;</span>
-
-<span style="color:#75715e">-- Use an on_attach function to only map the following keys</span>
-<span style="color:#75715e">-- after the language server attaches to the current buffer</span>
-<span style="color:#66d9ef">local</span> on_attach <span style="color:#f92672">=</span>  <span style="color:#66d9ef">function</span>(client, bufnr)
-<span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">buf_set_keymap</span>(...) vim.api.nvim_buf_set_keymap(bufnr, ...) <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">buf_set_option</span>(...) vim.api.nvim_buf_set_option(bufnr, ...) <span style="color:#66d9ef">end</span>
-
-<span style="color:#75715e">--Enable completion triggered by &lt;c-x&gt;&lt;c-o&gt;</span>
-buf_set_option(<span style="color:#e6db74">&#39;omnifunc&#39;</span>, <span style="color:#e6db74">&#39;v:lua.vim.lsp.omnifunc&#39;</span>)
-
-<span style="color:#75715e">-- Mappings.</span>
-<span style="color:#66d9ef">local</span> opts <span style="color:#f92672">=</span> { noremap<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>, silent<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span> }
-<span style="color:#75715e">-- local opts = {}</span>
-
-<span style="color:#75715e">-- See `:help vim.lsp.*` for documentation on any of the below functions</span>
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gD&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.declaration()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gd&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;K&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.hover()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gi&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.implementation()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;C-k&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.signature_help()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;wa&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.add_workspace_folder()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;wr&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.remove_workspace_folder()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;wl&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;D&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.type_definition()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;rn&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.rename()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;ca&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.code_action()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gr&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.references()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;e&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.show_line_diagnostics()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;[d&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.goto_prev()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;]d&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.goto_next()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;q&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.set_loclist()&lt;CR&gt;&#39;</span>, opts)
-buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;f&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.formatting()&lt;CR&gt;&#39;</span>, opts)
-
-require <span style="color:#e6db74">&#39;lsp_signature&#39;</span>.on_attach({
-  bind <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
-  zindex <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>,
-  doc_lines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-}, bufnr)
-
-<span style="color:#66d9ef">end</span>
-
-<span style="color:#75715e">-- Use a loop to conveniently call &#39;setup&#39; on multiple servers and</span>
-<span style="color:#75715e">-- map buffer local keybindings when the language server attaches</span>
-nvim_lsp.gopls.setup( 
-coq.lsp_ensure_capabilities({
-on_attach <span style="color:#f92672">=</span> on_attach,
-cmd <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;gopls&#34;</span>},
-settings <span style="color:#f92672">=</span> {
-  analyses <span style="color:#f92672">=</span> {
-    unusedparams <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
-  },
-  staticcheck <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
-  usePlaceholders <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
-  gofumpt <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
-}
-})
-)
-
-
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">gofmt</span>(timeout_ms)
-goimports(timeout_ms)
-vim.lsp.buf.formatting_sync()
-<span style="color:#66d9ef">end</span>
-
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">goimports</span>(timeout_ms)
-  <span style="color:#66d9ef">local</span> context <span style="color:#f92672">=</span> { only <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;source.organizeImports&#34;</span> } }
-  vim.validate { context <span style="color:#f92672">=</span> { context, <span style="color:#e6db74">&#34;t&#34;</span>, <span style="color:#66d9ef">true</span> } }
-
-  <span style="color:#66d9ef">local</span> params <span style="color:#f92672">=</span> vim.lsp.util.make_range_params()
-  params.context <span style="color:#f92672">=</span> context
-
-  <span style="color:#75715e">-- See the implementation of the textDocument/codeAction callback</span>
-  <span style="color:#75715e">-- (lua/vim/lsp/handler.lua) for how to do this properly.</span>
-  <span style="color:#66d9ef">local</span> result <span style="color:#f92672">=</span> vim.lsp.buf_request_sync(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;textDocument/codeAction&#34;</span>, params, timeout_ms)
-  <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> result <span style="color:#f92672">or</span> next(result) <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">local</span> actions <span style="color:#f92672">=</span> result[<span style="color:#ae81ff">1</span>].result
-  <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> actions <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">local</span> action <span style="color:#f92672">=</span> actions[<span style="color:#ae81ff">1</span>]
-
-  <span style="color:#75715e">-- textDocument/codeAction can return either Command[] or CodeAction[]. If it</span>
-  <span style="color:#75715e">-- is a CodeAction, it can have either an edit, a command or both. Edits</span>
-  <span style="color:#75715e">-- should be executed first.</span>
-  <span style="color:#66d9ef">if</span> action.edit <span style="color:#f92672">or</span> type(action.command) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;table&#34;</span> <span style="color:#66d9ef">then</span>
-    <span style="color:#66d9ef">if</span> action.edit <span style="color:#66d9ef">then</span>
-      vim.lsp.util.apply_workspace_edit(action.edit)
-    <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">if</span> type(action.command) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;table&#34;</span> <span style="color:#66d9ef">then</span>
-      vim.lsp.buf.execute_command(action.command)
-    <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">else</span>
-    vim.lsp.buf.execute_command(action)
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">local</span> nvim_lsp <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#39;lspconfig&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> coq <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#34;coq&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Use an on_attach function to only map the following keys</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- after the language server attaches to the current buffer</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> on_attach <span style="color:#f92672">=</span>  <span style="color:#66d9ef">function</span>(client, bufnr)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">buf_set_keymap</span>(...) vim.api.nvim_buf_set_keymap(bufnr, ...) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">buf_set_option</span>(...) vim.api.nvim_buf_set_option(bufnr, ...) <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">--Enable completion triggered by &lt;c-x&gt;&lt;c-o&gt;</span>
+</span></span><span style="display:flex;"><span>buf_set_option(<span style="color:#e6db74">&#39;omnifunc&#39;</span>, <span style="color:#e6db74">&#39;v:lua.vim.lsp.omnifunc&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Mappings.</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">local</span> opts <span style="color:#f92672">=</span> { noremap<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>, silent<span style="color:#f92672">=</span><span style="color:#66d9ef">false</span> }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- local opts = {}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- See `:help vim.lsp.*` for documentation on any of the below functions</span>
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gD&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.declaration()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gd&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.definition()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;K&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.hover()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gi&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.implementation()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;C-k&gt;&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.signature_help()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;wa&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.add_workspace_folder()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;wr&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.remove_workspace_folder()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;wl&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;D&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.type_definition()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;rn&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.rename()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;ca&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.code_action()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;gr&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.references()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;e&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.show_line_diagnostics()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;[d&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.goto_prev()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;]d&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.goto_next()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;q&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.diagnostic.set_loclist()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>buf_set_keymap(<span style="color:#e6db74">&#39;n&#39;</span>, <span style="color:#e6db74">&#39;&lt;space&gt;f&#39;</span>, <span style="color:#e6db74">&#39;&lt;cmd&gt;lua vim.lsp.buf.formatting()&lt;CR&gt;&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>require <span style="color:#e6db74">&#39;lsp_signature&#39;</span>.on_attach({
+</span></span><span style="display:flex;"><span>  bind <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  zindex <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>,
+</span></span><span style="display:flex;"><span>  doc_lines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>}, bufnr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Use a loop to conveniently call &#39;setup&#39; on multiple servers and</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- map buffer local keybindings when the language server attaches</span>
+</span></span><span style="display:flex;"><span>nvim_lsp.gopls.setup( 
+</span></span><span style="display:flex;"><span>coq.lsp_ensure_capabilities({
+</span></span><span style="display:flex;"><span>on_attach <span style="color:#f92672">=</span> on_attach,
+</span></span><span style="display:flex;"><span>cmd <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;gopls&#34;</span>},
+</span></span><span style="display:flex;"><span>settings <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  analyses <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    unusedparams <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  staticcheck <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  usePlaceholders <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  gofumpt <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">gofmt</span>(timeout_ms)
+</span></span><span style="display:flex;"><span>goimports(timeout_ms)
+</span></span><span style="display:flex;"><span>vim.lsp.buf.formatting_sync()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">goimports</span>(timeout_ms)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">local</span> context <span style="color:#f92672">=</span> { only <span style="color:#f92672">=</span> { <span style="color:#e6db74">&#34;source.organizeImports&#34;</span> } }
+</span></span><span style="display:flex;"><span>  vim.validate { context <span style="color:#f92672">=</span> { context, <span style="color:#e6db74">&#34;t&#34;</span>, <span style="color:#66d9ef">true</span> } }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">local</span> params <span style="color:#f92672">=</span> vim.lsp.util.make_range_params()
+</span></span><span style="display:flex;"><span>  params.context <span style="color:#f92672">=</span> context
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- See the implementation of the textDocument/codeAction callback</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- (lua/vim/lsp/handler.lua) for how to do this properly.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">local</span> result <span style="color:#f92672">=</span> vim.lsp.buf_request_sync(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;textDocument/codeAction&#34;</span>, params, timeout_ms)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> result <span style="color:#f92672">or</span> next(result) <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">local</span> actions <span style="color:#f92672">=</span> result[<span style="color:#ae81ff">1</span>].result
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> actions <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">local</span> action <span style="color:#f92672">=</span> actions[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- textDocument/codeAction can return either Command[] or CodeAction[]. If it</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- is a CodeAction, it can have either an edit, a command or both. Edits</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">-- should be executed first.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> action.edit <span style="color:#f92672">or</span> type(action.command) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;table&#34;</span> <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> action.edit <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>      vim.lsp.util.apply_workspace_edit(action.edit)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> type(action.command) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;table&#34;</span> <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>      vim.lsp.buf.execute_command(action.command)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    vim.lsp.buf.execute_command(action)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span></span></span></code></pre></div>
 </div>
 <p>
 Once you have all the files ready</p>
 <ul>
-<li>
-<p>Open neovim</p>
-</li>
-<li>
-<p>type :PlugInstall</p>
-</li>
-<li>
-<p>type :COQdeps</p>
-</li>
+<li>Open neovim</li>
+<li>type :PlugInstall</li>
+<li>type :COQdeps</li>
 </ul>
 <p>Now, you should be ready for go development in neovim.</p>
 <p>
 Couple of shortcuts to get you started:</p>
 <ul>
-<li>
-<p>&lt;Ctrl&gt; + n : Opens file browser</p>
-</li>
-<li>
-<p>&lt;Space&gt; + ff : Search for a file</p>
-</li>
+<li>&lt;Ctrl&gt; + n : Opens file browser</li>
+<li>&lt;Space&gt; + ff : Search for a file</li>
 </ul>
 </div>
 </div>
@@ -435,7 +355,7 @@ Couple of shortcuts to get you started:</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2021 <a href="https://udayblog.github.io/">Uday</a></span>
+    <span>&copy; 2022 <a href="http://localhost:1313/">Uday</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
