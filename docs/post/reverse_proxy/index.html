@@ -102,8 +102,8 @@ Based on your development language, it might be possible to enable logging in ve
   "keywords": [
     
   ],
-  "articleBody": " While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s). More often than not, you may want to see the data that is being sent from your application to other. This scenario may also occur when you have inherited/installed an application and would like to understand the client server request and response data.\nBased on your development language, it might be possible to enable logging in verbose level and find out this detail. While this might work, it may always not be possible.\nFor example you have inherited an application and that application does not offer logging capability.\nnetcat comes in handy to set up quick reverse proxy and monitor the network traffic that is going from client application to the server application. Advantage is that you can use netcat with any program as long as you can configure the server endpoint.\nOn Mac OS you can install netcat with a simple command\nbrew install netcat Once netcat is installed, you can start http reverse proxy as\nAt this point of time, it is https everywhere and netcat got you covered in that scenario too. All you need to do is add a flag\n",
-  "wordCount" : "206",
+  "articleBody": " While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s). More often than not, you may want to see the data that is being sent from your application to other. This scenario may also occur when you have inherited/installed an application and would like to understand the client server request and response data.\nBased on your development language, it might be possible to enable logging in verbose level and find out this detail. While this might work, it may always not be possible.\nFor example you have inherited an application and that application does not offer logging capability.\nnetcat comes in handy to set up quick reverse proxy and monitor the network traffic that is going from client application to the server application. Advantage is that you can use netcat with any program as long as you can configure the server endpoint.\nOn Mac OS you can install ncat with a simple command\nbrew install nmap Once netcat is installed, you can start http reverse proxy as\nmkfifo pipe ncat -kl 8001 \u003c pipe | tee -a traffic | ncat httpbin.org 80 | tee -a traffic \u003e pipe Now any traffic that you send on your localhost port 8001 will be redirected to httpbin.org on port 80. All the details of http request and response are logged into the file traffic.\nYou can verify this behavior with the following command while ncat is running by issuing the following command and looking at the contents in the file traffic.\ncurl -X GET \"http://localhost:8001/get\" -H \"accept: application/json\" At this point of time, it is https everywhere and netcat got you covered in that scenario too. All you need to do is add a flag and issue the command as below\nncat -kl 8001 \u003c pipe | tee -a traffic | ncat --ssl httpbin.org 443 | tee -a traffic \u003e pipe now your traffic will be forwarded to https version.\n",
+  "wordCount" : "329",
   "inLanguage": "en",
   "datePublished": "2022-05-23T00:00:00Z",
   "dateModified": "2022-05-23T00:00:00Z",
@@ -200,14 +200,30 @@ For example you have inherited an application and that application does not offe
 <strong>netcat</strong> comes in handy to set up quick reverse proxy and monitor the network traffic that is going from client application to the server application. Advantage is that you can use <strong>netcat</strong> with any program
 as long as you can configure the server endpoint.</p>
 <p>
-On Mac OS you can install <strong>netcat</strong> with a simple command</p>
+On Mac OS you can install <strong>ncat</strong> with a simple command</p>
 <div class="src src-shell">
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>brew install netcat</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>brew install nmap</span></span></code></pre></div>
 </div>
 <p>
 Once <strong>netcat</strong> is installed, you can start http reverse proxy as</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>  mkfifo pipe
+</span></span><span style="display:flex;"><span>  ncat -kl <span style="color:#ae81ff">8001</span> &lt; pipe | tee -a traffic | ncat httpbin.org <span style="color:#ae81ff">80</span> | tee -a traffic &gt; pipe</span></span></code></pre></div>
+</div>
 <p>
-At this point of time, it is https everywhere and <strong>netcat</strong> got you covered in that scenario too. All you need to do is add a flag</p>
+Now any traffic that you send on your localhost port 8001 will be redirected to httpbin.org on port 80. All the details of http request and response are logged into the file traffic.</p>
+<p>
+You can verify this behavior with the following command while <strong>ncat</strong> is running by issuing the following command and looking at the contents in the file traffic.</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> curl -X GET <span style="color:#e6db74">&#34;http://localhost:8001/get&#34;</span> -H <span style="color:#e6db74">&#34;accept: application/json&#34;</span></span></span></code></pre></div>
+</div>
+<p>
+At this point of time, it is https everywhere and <strong>netcat</strong> got you covered in that scenario too. All you need to do is add a flag and issue the command as below</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> ncat -kl <span style="color:#ae81ff">8001</span> &lt; pipe | tee -a traffic | ncat --ssl httpbin.org <span style="color:#ae81ff">443</span> | tee -a traffic &gt; pipe</span></span></code></pre></div>
+</div>
+<p>
+now your traffic will be forwarded to https version.</p>
 
 
   </div>

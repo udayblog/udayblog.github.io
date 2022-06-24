@@ -13,14 +13,29 @@ For example you have inherited an application and that application does not offe
 *netcat* comes in handy to set up quick reverse proxy and monitor the network traffic that is going from client application to the server application. Advantage is that you can use *netcat* with any program
 as long as you can configure the server endpoint.
 
-On Mac OS you can install *netcat* with a simple command
+On Mac OS you can install *ncat* with a simple command
 
 #+begin_src shell
-brew install netcat
+brew install nmap
 #+end_src
 
 Once *netcat* is installed, you can start http reverse proxy as
+#+begin_src shell
+  mkfifo pipe
+  ncat -kl 8001 < pipe | tee -a traffic | ncat httpbin.org 80 | tee -a traffic > pipe
+#+end_src
 
+Now any traffic that you send on your localhost port 8001 will be redirected to httpbin.org on port 80. All the details of http request and response are logged into the file traffic.
 
-At this point of time, it is https everywhere and *netcat* got you covered in that scenario too. All you need to do is add a flag
+You can verify this behavior with the following command while *ncat* is running by issuing the following command and looking at the contents in the file traffic.
+#+begin_src shell
+ curl -X GET "http://localhost:8001/get" -H "accept: application/json" 
+#+end_src
+
+At this point of time, it is https everywhere and *netcat* got you covered in that scenario too. All you need to do is add a flag and issue the command as below
+#+begin_src shell
+ ncat -kl 8001 < pipe | tee -a traffic | ncat --ssl httpbin.org 443 | tee -a traffic > pipe
+#+end_src
+
+now your traffic will be forwarded to https version.
 
