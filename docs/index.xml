@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Uday</title>
-    <link>http://localhost:1313/</link>
+    <link>https://udayblog.github.io/</link>
     <description>Recent content on Uday</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://udayblog.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Logging client to server network traffic</title>
-      <link>http://localhost:1313/post/reverse_proxy/</link>
+      <link>https://udayblog.github.io/post/reverse_proxy/</link>
       <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/reverse_proxy/</guid>
+      <guid>https://udayblog.github.io/post/reverse_proxy/</guid>
       <description>While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s). More often than not, you may want to see the data that is being sent from your application to other. This scenario may also occur when you have inherited/installed an application and would like to understand the client server request and response data.
 Based on your development language, it might be possible to enable logging in verbose level and find out this detail.</description>
     </item>
     
     <item>
       <title>Dotfiles management with gnu stow</title>
-      <link>http://localhost:1313/post/dotfiles/</link>
+      <link>https://udayblog.github.io/post/dotfiles/</link>
       <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dotfiles/</guid>
+      <guid>https://udayblog.github.io/post/dotfiles/</guid>
       <description>I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
 I wont go into details of my previous workflow but focus on how to use gnu stow.
 Let us walk through an example of using stow for neovim dotfiles.
@@ -31,20 +31,20 @@ Create a git repository to hold dotfiles</description>
     
     <item>
       <title>Go development setup with Neovim</title>
-      <link>http://localhost:1313/post/neovim_go/</link>
+      <link>https://udayblog.github.io/post/neovim_go/</link>
       <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/neovim_go/</guid>
+      <guid>https://udayblog.github.io/post/neovim_go/</guid>
       <description>Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.
 The goal of this post is to setup neovim for go development quickly; I won&amp;#39;t go into detailing about each plugin and custom mappings.</description>
     </item>
     
     <item>
       <title>Hello</title>
-      <link>http://localhost:1313/post/hello/</link>
+      <link>https://udayblog.github.io/post/hello/</link>
       <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/hello/</guid>
+      <guid>https://udayblog.github.io/post/hello/</guid>
       <description>I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place.</description>
     </item>
     

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Dotfiles management with gnu stow | Uday</title>
 <meta name="keywords" content="" />
 <meta name="description" content="I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
@@ -12,15 +12,15 @@ I wont go into details of my previous workflow but focus on how to use gnu stow.
 Let us walk through an example of using stow for neovim dotfiles.
 Create a git repository to hold dotfiles">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/post/dotfiles/" />
+<link rel="canonical" href="https://udayblog.github.io/post/dotfiles/" />
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.9f1d947375927e9847272b1f4e9be81336f539e513bf04d52cade31f81cad1af.css" integrity="sha256-nx2Uc3WSfphHJysfTpvoEzb1OeUTvwTVLK3jH4HK0a8=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://udayblog.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://udayblog.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://udayblog.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://udayblog.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://udayblog.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <meta name="generator" content="Hugo 0.100.2" />
@@ -60,7 +60,73 @@ Create a git repository to hold dotfiles">
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:title" content="Dotfiles management with gnu stow" />
+<meta property="og:description" content="I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+I wont go into details of my previous workflow but focus on how to use gnu stow.
+Let us walk through an example of using stow for neovim dotfiles.
+Create a git repository to hold dotfiles" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://udayblog.github.io/post/dotfiles/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-12-11T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-12-11T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dotfiles management with gnu stow"/>
+<meta name="twitter:description" content="I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+I wont go into details of my previous workflow but focus on how to use gnu stow.
+Let us walk through an example of using stow for neovim dotfiles.
+Create a git repository to hold dotfiles"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://udayblog.github.io/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Dotfiles management with gnu stow",
+      "item": "https://udayblog.github.io/post/dotfiles/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Dotfiles management with gnu stow",
+  "name": "Dotfiles management with gnu stow",
+  "description": "I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.\nI wont go into details of my previous workflow but focus on how to use gnu stow.\nLet us walk through an example of using stow for neovim dotfiles.\nCreate a git repository to hold dotfiles",
+  "keywords": [
+    
+  ],
+  "articleBody": " I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.\nI wont go into details of my previous workflow but focus on how to use gnu stow.\nLet us walk through an example of using stow for neovim dotfiles.\nCreate a git repository to hold dotfiles\nmkdir -p ~/go/src/github.com/me/dotfiles Create directory for neovim\nmkdir -p ~/go/src/github.com/me/dotfiles/neovim/.config/nvim Go ahead and create your configuration files\nFor starter, you init.vim file will be placed under touch ~/go/src/github.com/me/dotfiles/neovim/.config/nvim/init.vim' Once you have the configuration files, you can execute\nstow -t ~ ~/go/src/github.com/me/dotfiles/neovim Above command will create link to configuration folder\n~/.config/nvim stow basically creates a symbolic link for the folders that are present under your specified directory ( ~/go/src/github.com/me/dotfiles/neovim) in the target directory (~)\n",
+  "wordCount" : "143",
+  "inLanguage": "en",
+  "datePublished": "2021-12-11T00:00:00Z",
+  "dateModified": "2021-12-11T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://udayblog.github.io/post/dotfiles/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Uday",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://udayblog.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -78,7 +144,7 @@ Create a git repository to hold dotfiles">
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Uday (Alt + H)">Uday</a>
+            <a href="https://udayblog.github.io/" accesskey="h" title="Uday (Alt + H)">Uday</a>
             <span class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -104,12 +170,12 @@ Create a git repository to hold dotfiles">
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/post/" title="Blog">
+                <a href="https://udayblog.github.io/post/" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/" title="Home">
+                <a href="https://udayblog.github.io/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
@@ -174,7 +240,7 @@ in the target directory (<em>~</em>)</p>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="http://localhost:1313/">Uday</a></span>
+    <span>&copy; 2022 <a href="https://udayblog.github.io/">Uday</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
