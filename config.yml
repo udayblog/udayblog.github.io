@@ -1,7 +1,7 @@
 baseURL: https://udayblog.github.io/
 languageCode: en
 title: Uday
-theme: PaperMod
+theme: anubis
 publishDir: docs
 menu:
   main:
