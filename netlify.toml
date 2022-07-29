@@ -1,7 +1,7 @@
 
 
 [build]
-base + "content/post"
+base = "content/post"
 publish = "public"
 command = "hugo --gc --minify"
 
