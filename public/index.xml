@@ -1,295 +1,53 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Uday</title><link>https://udayblog.github.io/</link><description>Uday</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://udayblog.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Logging client to server network traffic</title><link>https://udayblog.github.io/post/reverse_proxy/</link><pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate><guid>https://udayblog.github.io/post/reverse_proxy/</guid><description>&lt;p>
-While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s).
-More often than not, you may want to see the data that is being sent from your application to other.
-This scenario may also occur when you have inherited/installed an application and would like to understand the client server request and response data.&lt;/p>
-&lt;p>
-Based on your development language, it might be possible to enable logging in verbose level and find out this detail.
-While this might work, it may always not be possible.&lt;/p>
-&lt;p>
-For example you have inherited an application and that application does not offer logging capability.&lt;/p>
-&lt;p>
-&lt;strong>netcat&lt;/strong> comes in handy to set up quick reverse proxy and monitor the network traffic that is going from client application to the server application. Advantage is that you can use &lt;strong>netcat&lt;/strong> with any program
-as long as you can configure the server endpoint.&lt;/p>
-&lt;p>
-On Mac OS you can install &lt;strong>ncat&lt;/strong> with a simple command&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>brew install nmap&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Once &lt;strong>netcat&lt;/strong> is installed, you can start http reverse proxy as&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span> mkfifo pipe
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ncat -kl &lt;span style="color:#ae81ff">8001&lt;/span> &amp;lt; pipe | tee -a traffic | ncat httpbin.org &lt;span style="color:#ae81ff">80&lt;/span> | tee -a traffic &amp;gt; pipe&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Now any traffic that you send on your localhost port 8001 will be redirected to httpbin.org on port 80. All the details of http request and response are logged into the file traffic.&lt;/p>
-&lt;p>
-You can verify this behavior with the following command while &lt;strong>ncat&lt;/strong> is running by issuing the following command and looking at the contents in the file traffic.&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span> curl -X GET &lt;span style="color:#e6db74">&amp;#34;http://localhost:8001/get&amp;#34;&lt;/span> -H &lt;span style="color:#e6db74">&amp;#34;accept: application/json&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-At this point of time, it is https everywhere and &lt;strong>netcat&lt;/strong> got you covered in that scenario too. All you need to do is add a flag and issue the command as below&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span> ncat -kl &lt;span style="color:#ae81ff">8001&lt;/span> &amp;lt; pipe | tee -a traffic | ncat --ssl httpbin.org &lt;span style="color:#ae81ff">443&lt;/span> | tee -a traffic &amp;gt; pipe&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-now your traffic will be forwarded to https version.&lt;/p></description></item><item><title>Dotfiles management with gnu stow</title><link>https://udayblog.github.io/post/dotfiles/</link><pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate><guid>https://udayblog.github.io/post/dotfiles/</guid><description>&lt;p>
-I used to manage my dotfiles in a git repository and add symbolic links manually.
-Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.&lt;/p>
-&lt;p>
-I wont go into details of my previous workflow but focus on how to use gnu stow.&lt;/p>
-&lt;p>
-Let us walk through an example of using stow for neovim dotfiles.&lt;/p>
-&lt;p>
-Create a git repository to hold dotfiles&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>mkdir -p ~/go/src/github.com/me/dotfiles&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Create directory for neovim&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>mkdir -p ~/go/src/github.com/me/dotfiles/neovim/.config/nvim&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Go ahead and create your configuration files&lt;/p>
-&lt;p>
-For starter, you init.vim file will be placed under &lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>touch ~/go/src/github.com/me/dotfiles/neovim/.config/nvim/init.vim&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Once you have the configuration files, you can execute&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>stow -t ~ ~/go/src/github.com/me/dotfiles/neovim&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Above command will create link to configuration folder&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>~/.config/nvim&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-stow basically creates a symbolic link for the folders that are present under your specified directory ( &lt;em>~/go/src/github.com/me/dotfiles/neovim&lt;/em>)
-in the target directory (&lt;em>~&lt;/em>)&lt;/p></description></item><item><title>Go development setup with Neovim</title><link>https://udayblog.github.io/post/neovim_go/</link><pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate><guid>https://udayblog.github.io/post/neovim_go/</guid><description>
-&lt;p>
-Before I start writing this post, I have a confession to make. I never thought I would be writing a post about
-an editor and it’s configuration, yet here I am writing about one of the most renowned editors, &lt;strong>neovim&lt;/strong>. There are numerous
-posts about neovim and its configuration out there, but there is always scope for one more blog post.&lt;/p>
-&lt;p>
-The goal of this post is to setup neovim for go development quickly; I won&amp;#39;t go into detailing about each plugin and custom mappings.&lt;/p>
-&lt;p>
-Though there is packer for managing packages in neovim, I stick with &lt;strong>vim-plug&lt;/strong> for plugin management&lt;/p>
-&lt;div id="outline-container-headline-1" class="outline-2">
-&lt;h2 id="headline-1">
-Steps
-&lt;/h2>
-&lt;div id="outline-text-headline-1" class="outline-text-2">
-&lt;ul>
-&lt;li>
-&lt;p>Create configuration files with the following commands:&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>touch ~/.config/nvim/init.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch ~/.config/nvim/mappings.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch ~/.config/nvim/plugins.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch ~/.config/nvim/nerdtree.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir -p lua/config
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch ~/.config/nvim/lua/config/telescope.lua
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch ~/.config/nvim/lua/config/golsp.lua&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>Contents of ~/.config/nvim/init.vim&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span> source ~/.config/nvim/plugins.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> source ~/.config/nvim/mappings.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> source ~/.config/nvim/nerdtree.vim
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> :lua require&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;config/telescope&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> :lua require&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;config/golsp&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;/li>
-&lt;li>
-&lt;p>Contents of ~/.config/nvim/plugins.vim&lt;/p>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span> call plug#begin&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#e6db74">&amp;#39;~/.config/nvim/plugged&amp;#39;&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;scrooloose/nerdtree&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;junegunn/fzf&amp;#39;&lt;/span>, &lt;span style="color:#f92672">{&lt;/span> &lt;span style="color:#e6db74">&amp;#39;do&amp;#39;&lt;/span>: &lt;span style="color:#f92672">{&lt;/span> -&amp;gt; fzf#install&lt;span style="color:#f92672">()&lt;/span> &lt;span style="color:#f92672">}&lt;/span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;junegunn/fzf.vim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;vim-airline/vim-airline&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;vim-airline/vim-airline-themes&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;tpope/vim-fugitive&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;airblade/vim-gitgutter&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;chriskempson/base16-vim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;nvim-lua/popup.nvim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;nvim-lua/plenary.nvim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;nvim-telescope/telescope.nvim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;neovim/nvim-lspconfig&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;nvim-treesitter/nvim-treesitter&amp;#39;&lt;/span>, &lt;span style="color:#f92672">{&lt;/span>&lt;span style="color:#e6db74">&amp;#39;do&amp;#39;&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;:TSUpdate&amp;#39;&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;simrat39/symbols-outline.nvim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;ray-x/lsp_signature.nvim&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;ms-jpq/coq_nvim&amp;#39;&lt;/span>, &lt;span style="color:#f92672">{&lt;/span>&lt;span style="color:#e6db74">&amp;#39;branch&amp;#39;&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;coq&amp;#39;&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Plug &lt;span style="color:#e6db74">&amp;#39;ms-jpq/coq.artifacts&amp;#39;&lt;/span>, &lt;span style="color:#f92672">{&lt;/span>&lt;span style="color:#e6db74">&amp;#39;branch&amp;#39;&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;artifacts&amp;#39;&lt;/span>&lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> call plug#end&lt;span style="color:#f92672">()&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;/li>
-&lt;li>Contents of ~/.config/nvim/mappings.vim&lt;/li>
-&lt;/ul>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>let mapleader&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;\&amp;lt;space&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set nu rnu
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set tabstop&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> softtabstop&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">0&lt;/span> expandtab shiftwidth&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span> smarttab
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>map &amp;lt;C-s&amp;gt; :w&amp;lt;CR&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>imap &amp;lt;C-s&amp;gt; &amp;lt;Esc&amp;gt;:w&amp;lt;CR&amp;gt;i
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>let g:coq_settings &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">{&lt;/span> &lt;span style="color:#e6db74">&amp;#39;auto_start&amp;#39;&lt;/span>: v:true &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>:lua vim.o.completeopt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;menuone,noselect&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>autocmd BufWritePre *.go lua gofmt&lt;span style="color:#f92672">(&lt;/span>1000&lt;span style="color:#f92672">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;ul>
-&lt;li>Contents of ~/.config/nvim/nerdtree.vim&lt;/li>
-&lt;/ul>
-&lt;div class="src src-shell">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span> nnoremap &amp;lt;C-n&amp;gt; :NERDTreeToggle&amp;lt;CR&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> let g:NERDTreeWinPos &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;right&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;ul>
-&lt;li>Contents of ~/.config/nvim/lua/config/telescope.lua&lt;/li>
-&lt;/ul>
-&lt;div class="src src-lua">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-lua" data-lang="lua">&lt;span style="display:flex;">&lt;span>require&lt;span style="color:#e6db74">&amp;#39;telescope&amp;#39;&lt;/span>.setup {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>preview_cutoff &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> opts &lt;span style="color:#f92672">=&lt;/span> {}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- See `:help vim.lsp.*` for documentation on any of the below functions&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> keymap &lt;span style="color:#f92672">=&lt;/span> vim.api.nvim_set_keymap
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;leader&amp;gt;ff&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua require(&amp;#34;telescope.builtin&amp;#34;).find_files()&amp;lt;cr&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;leader&amp;gt;fg&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua require(&amp;#34;telescope.builtin&amp;#34;).live_grep()&amp;lt;cr&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;leader&amp;gt;fb&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua require(&amp;#34;telescope.builtin&amp;#34;).buffers()&amp;lt;cr&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;leader&amp;gt;fh&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua require(&amp;#34;telescope.builtin&amp;#34;).help_tags()&amp;lt;cr&amp;gt;&amp;#39;&lt;/span>, opts)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;ul>
-&lt;li>Contents of ~/.config/nvim/lua/config/golsp.lua&lt;/li>
-&lt;/ul>
-&lt;div class="src src-lua">
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-lua" data-lang="lua">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> nvim_lsp &lt;span style="color:#f92672">=&lt;/span> require &lt;span style="color:#e6db74">&amp;#39;lspconfig&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> coq &lt;span style="color:#f92672">=&lt;/span> require &lt;span style="color:#e6db74">&amp;#34;coq&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- Use an on_attach function to only map the following keys&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- after the language server attaches to the current buffer&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> on_attach &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span>(client, bufnr)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">buf_set_keymap&lt;/span>(...) vim.api.nvim_buf_set_keymap(bufnr, ...) &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">buf_set_option&lt;/span>(...) vim.api.nvim_buf_set_option(bufnr, ...) &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">--Enable completion triggered by &amp;lt;c-x&amp;gt;&amp;lt;c-o&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_option(&lt;span style="color:#e6db74">&amp;#39;omnifunc&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;v:lua.vim.lsp.omnifunc&amp;#39;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- Mappings.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">local&lt;/span> opts &lt;span style="color:#f92672">=&lt;/span> { noremap&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">true&lt;/span>, silent&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#66d9ef">false&lt;/span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- local opts = {}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- See `:help vim.lsp.*` for documentation on any of the below functions&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;gD&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.declaration()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;gd&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.definition()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;K&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.hover()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;gi&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.implementation()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;C-k&amp;gt;&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.signature_help()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;wa&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.add_workspace_folder()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;wr&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.remove_workspace_folder()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;wl&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;D&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.type_definition()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;rn&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.rename()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;ca&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.code_action()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;gr&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.references()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;e&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.diagnostic.show_line_diagnostics()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;[d&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.diagnostic.goto_prev()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;]d&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.diagnostic.goto_next()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;q&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.diagnostic.set_loclist()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>buf_set_keymap(&lt;span style="color:#e6db74">&amp;#39;n&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;space&amp;gt;f&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;&amp;lt;cmd&amp;gt;lua vim.lsp.buf.formatting()&amp;lt;CR&amp;gt;&amp;#39;&lt;/span>, opts)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>require &lt;span style="color:#e6db74">&amp;#39;lsp_signature&amp;#39;&lt;/span>.on_attach({
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> bind &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> zindex &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">200&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> doc_lines &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}, bufnr)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- Use a loop to conveniently call &amp;#39;setup&amp;#39; on multiple servers and&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">-- map buffer local keybindings when the language server attaches&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>nvim_lsp.gopls.setup(
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>coq.lsp_ensure_capabilities({
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>on_attach &lt;span style="color:#f92672">=&lt;/span> on_attach,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cmd &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#e6db74">&amp;#34;gopls&amp;#34;&lt;/span>},
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>settings &lt;span style="color:#f92672">=&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> analyses &lt;span style="color:#f92672">=&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> unusedparams &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> staticcheck &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> usePlaceholders &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> gofumpt &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">gofmt&lt;/span>(timeout_ms)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>goimports(timeout_ms)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>vim.lsp.buf.formatting_sync()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">goimports&lt;/span>(timeout_ms)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">local&lt;/span> context &lt;span style="color:#f92672">=&lt;/span> { only &lt;span style="color:#f92672">=&lt;/span> { &lt;span style="color:#e6db74">&amp;#34;source.organizeImports&amp;#34;&lt;/span> } }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vim.validate { context &lt;span style="color:#f92672">=&lt;/span> { context, &lt;span style="color:#e6db74">&amp;#34;t&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">true&lt;/span> } }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">local&lt;/span> params &lt;span style="color:#f92672">=&lt;/span> vim.lsp.util.make_range_params()
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> params.context &lt;span style="color:#f92672">=&lt;/span> context
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- See the implementation of the textDocument/codeAction callback&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- (lua/vim/lsp/handler.lua) for how to do this properly.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">local&lt;/span> result &lt;span style="color:#f92672">=&lt;/span> vim.lsp.buf_request_sync(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;textDocument/codeAction&amp;#34;&lt;/span>, params, timeout_ms)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">not&lt;/span> result &lt;span style="color:#f92672">or&lt;/span> next(result) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> &lt;span style="color:#66d9ef">then&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">local&lt;/span> actions &lt;span style="color:#f92672">=&lt;/span> result[&lt;span style="color:#ae81ff">1&lt;/span>].result
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">not&lt;/span> actions &lt;span style="color:#66d9ef">then&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">local&lt;/span> action &lt;span style="color:#f92672">=&lt;/span> actions[&lt;span style="color:#ae81ff">1&lt;/span>]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- textDocument/codeAction can return either Command[] or CodeAction[]. If it&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- is a CodeAction, it can have either an edit, a command or both. Edits&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">-- should be executed first.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> action.edit &lt;span style="color:#f92672">or&lt;/span> type(action.command) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;table&amp;#34;&lt;/span> &lt;span style="color:#66d9ef">then&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> action.edit &lt;span style="color:#66d9ef">then&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vim.lsp.util.apply_workspace_edit(action.edit)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> type(action.command) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#34;table&amp;#34;&lt;/span> &lt;span style="color:#66d9ef">then&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vim.lsp.buf.execute_command(action.command)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">else&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vim.lsp.buf.execute_command(action)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">end&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">end&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;p>
-Once you have all the files ready&lt;/p>
-&lt;ul>
-&lt;li>Open neovim&lt;/li>
-&lt;li>type :PlugInstall&lt;/li>
-&lt;li>type :COQdeps&lt;/li>
-&lt;/ul>
-&lt;p>Now, you should be ready for go development in neovim.&lt;/p>
-&lt;p>
-Couple of shortcuts to get you started:&lt;/p>
-&lt;ul>
-&lt;li>&amp;lt;Ctrl&amp;gt; + n : Opens file browser&lt;/li>
-&lt;li>&amp;lt;Space&amp;gt; + ff : Search for a file&lt;/li>
-&lt;/ul>
-&lt;/div>
-&lt;/div></description></item><item><title>Hello</title><link>https://udayblog.github.io/post/hello/</link><pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate><guid>https://udayblog.github.io/post/hello/</guid><description>&lt;p>I used to blog not so frequently at &lt;a href="https://experience-themaster.blogspot.com/">https://experience-themaster.blogspot.com/&lt;/a> and that has stopped as I had little time to write about.
-This time I am trying to revive the habit of writing and making it more frequent.
-I am getting my hands dirty with emacs org mode which is what I am using to post this.
-I am hoping that one day, I might combine both blogs at one single place. More interesting content to follow.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thoughts &amp; Learnings</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Thoughts &amp; Learnings</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-GB</language>
+    <copyright>© Uday</copyright>
+    <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logging client to server network traffic</title>
+      <link>http://localhost:1313/post/reverse_proxy/</link>
+      <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/reverse_proxy/</guid>
+      <description>While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s). More often than not, you may want to see the data that is being sent from your application to other. This scenario may also occur when you have inherited/installed an application and would like to understand the client server request and response data.
+Based on your development language, it might be possible to enable logging in verbose level and find out this detail.</description>
+    </item>
+    
+    <item>
+      <title>Dotfiles management with gnu stow</title>
+      <link>http://localhost:1313/post/dotfiles/</link>
+      <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/dotfiles/</guid>
+      <description>I used to manage my dotfiles in a git repository and add symbolic links manually. Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.
+I wont go into details of my previous workflow but focus on how to use gnu stow.
+Let us walk through an example of using stow for neovim dotfiles.
+Create a git repository to hold dotfiles</description>
+    </item>
+    
+    <item>
+      <title>Go development setup with Neovim</title>
+      <link>http://localhost:1313/post/neovim_go/</link>
+      <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/neovim_go/</guid>
+      <description>Before I start writing this post, I have a confession to make. I never thought I would be writing a post about an editor and it’s configuration, yet here I am writing about one of the most renowned editors, neovim. There are numerous posts about neovim and its configuration out there, but there is always scope for one more blog post.
+The goal of this post is to setup neovim for go development quickly; I won&amp;#39;t go into detailing about each plugin and custom mappings.</description>
+    </item>
+    
+    <item>
+      <title>Hello</title>
+      <link>http://localhost:1313/post/hello/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/hello/</guid>
+      <description>I used to blog not so frequently at https://experience-themaster.blogspot.com/ and that has stopped as I had little time to write about. This time I am trying to revive the habit of writing and making it more frequent. I am getting my hands dirty with emacs org mode which is what I am using to post this. I am hoping that one day, I might combine both blogs at one single place.</description>
+    </item>
+    
+  </channel>
+</rss>

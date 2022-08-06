@@ -1,7 +1,8 @@
 baseURL: https://udayblog.netlify.app/
 languageCode: en
 title: Uday
-theme: anubis
+theme: researcher
+  #theme: archie
 menu:
   main:
     - name: Home
