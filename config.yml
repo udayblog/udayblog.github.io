@@ -1,4 +1,4 @@
-baseURL: https://udayblog.github.io/
+baseURL: https://udayblog.netlify.app/
 languageCode: en
 title: Uday
 theme: anubis
