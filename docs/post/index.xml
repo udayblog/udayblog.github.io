@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Uday</title>
-    <link>http://localhost:1313/post/</link>
+    <link>https://udayblog.github.io/post/</link>
     <description>Uday (Posts)</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate>
     
-    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://udayblog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Logging client to server network traffic</title>
-      <link>http://localhost:1313/post/reverse_proxy/</link>
+      <link>https://udayblog.github.io/post/reverse_proxy/</link>
       <pubDate>Mon, 23 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/reverse_proxy/</guid>
+      <guid>https://udayblog.github.io/post/reverse_proxy/</guid>
       <description>&lt;p&gt;
 While developing applications it is quite common that the application that you are developing needs to talk to other services over http(s).
 More often than not, you may want to see the data that is being sent from your application to other.
@@ -59,10 +59,10 @@ now your traffic will be forwarded to https version.&lt;/p&gt;
     
     <item>
       <title>Dotfiles management with gnu stow</title>
-      <link>http://localhost:1313/post/dotfiles/</link>
+      <link>https://udayblog.github.io/post/dotfiles/</link>
       <pubDate>Sat, 11 Dec 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dotfiles/</guid>
+      <guid>https://udayblog.github.io/post/dotfiles/</guid>
       <description>&lt;p&gt;
 I used to manage my dotfiles in a git repository and add symbolic links manually.
 Today I stumbled upon a program called stow to manage dotfiles and thought I will give it a go.&lt;/p&gt;
@@ -105,10 +105,10 @@ in the target directory (&lt;em&gt;~&lt;/em&gt;)&lt;/p&gt;
     
     <item>
       <title>Go development setup with Neovim</title>
-      <link>http://localhost:1313/post/neovim_go/</link>
+      <link>https://udayblog.github.io/post/neovim_go/</link>
       <pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/neovim_go/</guid>
+      <guid>https://udayblog.github.io/post/neovim_go/</guid>
       <description>
 &lt;p&gt;
 Before I start writing this post, I have a confession to make. I never thought I would be writing a post about
@@ -334,10 +334,10 @@ Couple of shortcuts to get you started:&lt;/p&gt;
     
     <item>
       <title>Hello</title>
-      <link>http://localhost:1313/post/hello/</link>
+      <link>https://udayblog.github.io/post/hello/</link>
       <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/hello/</guid>
+      <guid>https://udayblog.github.io/post/hello/</guid>
       <description>&lt;p&gt;I used to blog not so frequently at &lt;a href=&#34;https://experience-themaster.blogspot.com/&#34;&gt;https://experience-themaster.blogspot.com/&lt;/a&gt; and that has stopped as I had little time to write about.
 This time I am trying to revive the habit of writing and making it more frequent.
 I am getting my hands dirty with emacs org mode which is what I am using to post this.
