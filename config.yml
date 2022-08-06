@@ -2,7 +2,6 @@ baseURL: https://udayblog.github.io/
 languageCode: en
 title: Uday
 theme: anubis
-publishDir: docs
 menu:
   main:
     - name: Home
