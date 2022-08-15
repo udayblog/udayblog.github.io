@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
     <copyright>© Uday</copyright>
-    <lastBuildDate>Mon, 23 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Storage and throughput calculation</title>
+      <link>http://localhost:1313/post/storage/</link>
+      <pubDate>Mon, 15 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/storage/</guid>
+      <description>During software design it is quite common to end up in a situtation to calculate storage and throughput requirements for servers. Below is a quick calculation cheat sheet to help in such situations.
+I have kept calculations deliberately upto Petabytes.
+Power of 10 Formula Result 3 KB KB 6 KB * KB MB 9 KB * MB GB 12 KB * GB TB 15 MB * GB PB For throughput requirements, it is generally better to have a baseline for day.</description>
+    </item>
+    
     <item>
       <title>Logging client to server network traffic</title>
       <link>http://localhost:1313/post/reverse_proxy/</link>

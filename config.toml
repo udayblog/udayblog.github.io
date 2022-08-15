@@ -2,6 +2,7 @@ baseURL = "https://udayblog.netlify.app/"
 languageCode = "en-GB"
 title = "Thoughts & Learnings"
 theme="archie"
+# theme="m10c"
 copyright = "© Uday"
 # Code Highlight
 pygmentsstyle = "monokai"

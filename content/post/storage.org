@@ -1,0 +1,28 @@
+#+title: Storage and throughput calculation
+#+date: <2022-08-15 Mon>
+
+During software design it is quite common to end up in a situtation to calculate storage and throughput requirements for servers.
+Below is a quick calculation cheat sheet to help in such situations.
+
+I have kept calculations deliberately upto Petabytes.
+
+|-------------+---------+--------|
+| Power of 10 | Formula | Result |
+|-------------+---------+--------|
+|           3 | KB      | KB     |
+|           6 | KB * KB | MB     |
+|           9 | KB * MB | GB     |
+|          12 | KB * GB | TB     |
+|          15 | MB * GB | PB     |
+|-------------+---------+--------|
+
+
+For throughput requirements, it is generally better to have a baseline for day. A day has 24 (hours/day) * 60 (minutes/hour) * 60 (seconds/minute) = 86400 seconds per day which is approximately 80 * 10^3 seconds.
+
+To calculate the trhoughput requirements to handle 1 million requests per day, it is easier to calculate
+
+10^6 / (80 * 10 ^3 ) = 1000/ 80 = 100/8 = ~12 per second
+
+Based on the above, if you need to estimate 1 million requests per month it is a matter of calculating 12/30 = ~0.4 per second
+
+I find having this method of calculation easier when you dont have a reference sheet for calculations without needing calculators. If you are a math prodigy, you dont need this post ;)
