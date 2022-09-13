@@ -1,5 +1,6 @@
 #+TITLE: Azure linux vm with java using terraform
 #+date: <2022-09-11 Sun>
+#+tags: azure, terraform, ansible
 
 This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about
 terraform and ansible.
