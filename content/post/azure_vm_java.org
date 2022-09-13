@@ -1,0 +1,58 @@
+#+TITLE: Azure linux vm with java using terraform
+#+date: <2022-09-11 Sun>
+
+This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about
+terraform and ansible.
+
+
+Terraform will be used to provision infrastructe i.e. virtual machine and ansible will be used to install software.
+
+The model can be extended to install desired software as per the needs.
+
+Source code for the scripts explained in this post is available at https://github.com/udayblog/public_cloud.git
+
+In this example, resource group, network security group and subnet ids are not created but accepted as inputs. In a typical enterprise environment,
+these will be already created as per organisation policies. Incase these resources need to be created, there are examples at terraform website to create these resources.
+Otherwise these need to be filled with appropriate values.
+
+VM will be created with a private ip and will not have public ip, when public ip is required please refer to terraform documentation and change *ip_configuration* section in the file *main.tf*
+
+Under the section *provisioner "remote-exec"* in the file *main.tf*
+- script_path value is provided, otherwise terraform will create script in */tmp* folder and this may be prohibited under organisation policy.
+- inline is required as terraform will not wait for the complete initialisation of the vm and try to execute ansible playbook which will result in error.
+
+Change to terraform directory
+  #+begin_src shell
+  cd terraform
+  #+end_src
+Add ssh private key to the ssh daemon. Key will be used by terraform to execute ansible playbook on the vm.
+  #+begin_src shell
+  ssh-add  ~/.ssh/id_rsa
+  #+end_src
+
+Login to azure through cli
+  #+begin_src shell
+  az login
+  #+end_src
+
+Create resources through terraform
+  #+begin_src shell
+   terraform init
+   terraform plan
+   terraform apply
+
+  #+end_src
+
+Executing the above commands will result in creation of vm and execution of the ansible playbook to install the software.
+
+Login to azure portal to look at the newly created vm or query vms through azure cli as below
+    #+begin_src shell
+ az vm list -otable
+    #+end_src
+
+VM can be connected using the ssh provided in the *variables.tf*
+
+Once the creation is proven, clean the resources
+  #+begin_src shell
+terraform destroy
+  #+end_src

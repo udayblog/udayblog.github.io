@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Azure linux vm with java using terraform - Thoughts &amp; Learnings</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about terraform and ansible.
+Terraform will be used to provision infrastructe i.e. virtual machine and ansible will be used to install software.
+The model can be extended to install desired software as per the needs.
+Source code for the scripts explained in this post is available at https://github.com/udayblog/public_cloud.git" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Azure linux vm with java using terraform" />
+<meta property="og:description" content="This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about terraform and ansible.
+Terraform will be used to provision infrastructe i.e. virtual machine and ansible will be used to install software.
+The model can be extended to install desired software as per the needs.
+Source code for the scripts explained in this post is available at https://github.com/udayblog/public_cloud.git" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/azure_vm_java/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-09-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-11T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Azure linux vm with java using terraform"/>
+<meta name="twitter:description" content="This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about terraform and ansible.
+Terraform will be used to provision infrastructe i.e. virtual machine and ansible will be used to install software.
+The model can be extended to install desired software as per the needs.
+Source code for the scripts explained in this post is available at https://github.com/udayblog/public_cloud.git"/>
+<script src="http://localhost:1313/js/feather.min.js"></script>
+	
+	
+        <link href="http://localhost:1313/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/css/main.d1574b43a51792a446cd761d6f9b1c9abb39ed2c36ca6984f74aef729eb9f245.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="http://localhost:1313/">Thoughts &amp; Learnings</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		| <a id="dark-mode-toggle" onclick="toggleTheme()" href=""></a>
+		<script src="http://localhost:1313/js/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Azure linux vm with java using terraform</h1>
+			<div class="meta">Posted on Sep 11, 2022</div>
+		</div>
+		
+
+		<section class="body">
+			<p>
+This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about
+terraform and ansible.</p>
+<p>
+Terraform will be used to provision infrastructe i.e. virtual machine and ansible will be used to install software.</p>
+<p>
+The model can be extended to install desired software as per the needs.</p>
+<p>
+Source code for the scripts explained in this post is available at <a href="https://github.com/udayblog/public_cloud.git">https://github.com/udayblog/public_cloud.git</a></p>
+<p>
+In this example, resource group, network security group and subnet ids are not created but accepted as inputs. In a typical enterprise environment,
+these will be already created as per organisation policies. Incase these resources need to be created, there are examples at terraform website to create these resources.
+Otherwise these need to be filled with appropriate values.</p>
+<p>
+VM will be created with a private ip and will not have public ip, when public ip is required please refer to terraform documentation and change <strong>ip_configuration</strong> section in the file <strong>main.tf</strong></p>
+<p>
+Under the section <strong>provisioner &#34;remote-exec&#34;</strong> in the file <strong>main.tf</strong></p>
+<ul>
+<li>script_path value is provided, otherwise terraform will create script in <strong>/tmp</strong> folder and this may be prohibited under organisation policy.</li>
+<li>inline is required as terraform will not wait for the complete initialisation of the vm and try to execute ansible playbook which will result in error.</li>
+</ul>
+<p>Change to terraform directory</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd terraform</span></span></code></pre></div>
+</div>
+<p>Add ssh private key to the ssh daemon. Key will be used by terraform to execute ansible playbook on the vm.</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ssh-add  ~/.ssh/id_rsa</span></span></code></pre></div>
+</div>
+<p>
+Login to azure through cli</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>az login</span></span></code></pre></div>
+</div>
+<p>
+Create resources through terraform</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> terraform init
+</span></span><span style="display:flex;"><span> terraform plan
+</span></span><span style="display:flex;"><span> terraform apply</span></span></code></pre></div>
+</div>
+<p>
+Executing the above commands will result in creation of vm and execution of the ansible playbook to install the software.</p>
+<p>
+Login to azure portal to look at the newly created vm or query vms through azure cli as below</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>az vm list -otable</span></span></code></pre></div>
+</div>
+<p>
+VM can be connected using the ssh provided in the <strong>variables.tf</strong></p>
+<p>
+Once the creation is proven, clean the resources</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>terraform destroy</span></span></code></pre></div>
+</div>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="" title="GitHub"><i data-feather="github"></i></a>
+    <a class="border"></a><a class="soc" href="" title="Twitter"><i data-feather="twitter"></i></a>
+    <a class="border"></a></div>
+  <div class="footer-info">
+    2022  © Uday |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>
