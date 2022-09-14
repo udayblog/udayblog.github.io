@@ -1,4 +1,4 @@
-#+TITLE: AKS Horizontal Scaling based on requests
+#+TITLE: AKS Pod Horizontal Scaling based on requests
 #+date: <2022-09-14 Sun>
 #+tags: azure, keda, containers, kubernetes
 
