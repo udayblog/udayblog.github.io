@@ -1,0 +1,48 @@
+#+TITLE: Git worktrees
+#+date: <2022-09-23 Fri>
+#+tags: git
+
+I have been using git worktree successfully for a while now and this post is about one little detail that could be annoying when working with git worktrees. It is quite common to clone a bare repository and work on that using the following
+
+#+begin_src shell
+git clone --bare git@github.com:udayblog/public_cloud.git public_cloud
+#+end_src
+
+You can start adding worktrees and work on the fixes with the following
+#+begin_src shell
+cd public_cloud
+git worktree add -b hotfix hotfix main
+cd hotfix
+touch file_to_fix.txt
+git add file_to_fix.txt
+git commit -am"Awesome fix"
+git push -u origin hotfix
+#+end_src
+
+
+Usually above workflow works well until, you end up in a situation where you need to pull/fetch one of the remote branches.
+#+begin_src shell
+> git fetch
+From github.com:udayblog/public_cloud
+ * branch            HEAD       -> FETCH_HEAD
+#+end_src
+
+As seen above no remote branches are tracked
+
+To fix this the following workflow seems to be satisfactory
+
+#+begin_src shell
+mkdir public_cloud
+git clone --bare git@github.com:udayblog/public_cloud.git bare
+echo "gitdir: ./bare" > .git
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+#+end_src
+
+Now if you try to fetch, remote branches will appear as below
+#+begin_src shell
+> git fetch
+From github.com:udayblog/public_cloud
+ * [new branch]      main       -> origin/main
+#+end_src
+
+Above commands can be aliased to a single command as per your convenience.

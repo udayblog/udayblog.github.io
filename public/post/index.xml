@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-GB</language>
     <copyright>© Uday</copyright>
-    <lastBuildDate>Sun, 11 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git worktrees</title>
+      <link>http://localhost:1313/post/git_worktree/</link>
+      <pubDate>Fri, 23 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/git_worktree/</guid>
+      <description>I have been using git worktree successfully for a while now and this post is about one little detail that could be annoying when working with git worktrees. It is quite common to clone a bare repository and work on that using the following
+git clone --bare git@github.com:udayblog/public_cloud.git public_cloud You can start adding worktrees and work on the fixes with the following
+cd public_cloud git worktree add -b hotfix hotfix main cd hotfix touch file_to_fix.</description>
+    </item>
+    
+    <item>
+      <title>AKS Pod Horizontal Scaling based on requests</title>
+      <link>http://localhost:1313/post/azure_hpa/</link>
+      <pubDate>Wed, 14 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/azure_hpa/</guid>
+      <description>It is a common requirement to scale applications deployed on Kubernetes. This post targets on how to leverage Azure built in features to configure horizontal pod autoscaling. Usually, the infrastrucre is setup with a mointoring system such as https://prometheus.io/ [prometheus] and configure custom metric scraping from the applications. However, the focus for this post is to explore the default capabilities provided by Azure platform to achieve horizontal pod scaling.</description>
+    </item>
+    
     <item>
       <title>Azure linux vm with java using terraform</title>
       <link>http://localhost:1313/post/azure_vm_java/</link>

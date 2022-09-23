@@ -58,6 +58,30 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/post/git_worktree/">Git worktrees</a></h1>
+					<time>Sep 23, 2022</time>
+					<br><div class="description">
+						
+						I have been using git worktree successfully for a while now and this post is about one little detail that could be annoying when working with git worktrees. It is quite common to clone a bare repository and work on that using the following
+git clone --bare git@github.com:udayblog/public_cloud.git public_cloud You can start adding worktrees and work on the fixes with the following
+cd public_cloud git worktree add -b hotfix hotfix main cd hotfix touch file_to_fix.&hellip;
+						
+					</div>
+					<a class="readmore" href="/post/git_worktree/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/post/azure_hpa/">AKS Pod Horizontal Scaling based on requests</a></h1>
+					<time>Sep 14, 2022</time>
+					<br><div class="description">
+						
+						It is a common requirement to scale applications deployed on Kubernetes. This post targets on how to leverage Azure built in features to configure horizontal pod autoscaling. Usually, the infrastrucre is setup with a mointoring system such as https://prometheus.io/ [prometheus] and configure custom metric scraping from the applications. However, the focus for this post is to explore the default capabilities provided by Azure platform to achieve horizontal pod scaling.&hellip;
+						
+					</div>
+					<a class="readmore" href="/post/azure_hpa/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/post/azure_vm_java/">Azure linux vm with java using terraform</a></h1>
 					<time>Sep 11, 2022</time>
 					<br><div class="description">

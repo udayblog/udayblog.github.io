@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>terraform, on Thoughts &amp; Learnings</title>
+    <link>http://localhost:1313/tags/terraform/</link>
+    <description>Recent content in terraform, on Thoughts &amp; Learnings</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-GB</language>
+    <copyright>© Uday</copyright>
+    <lastBuildDate>Sun, 11 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/terraform/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Azure linux vm with java using terraform</title>
+      <link>http://localhost:1313/post/azure_vm_java/</link>
+      <pubDate>Sun, 11 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/azure_vm_java/</guid>
+      <description>This post explores about provising a linux vm with java 11 on Azure platform and wont go into comparing or describing about terraform and ansible.
+Terraform will be used to provision infrastructe i.e. virtual machine and ansible will be used to install software.
+The model can be extended to install desired software as per the needs.
+Source code for the scripts explained in this post is available at https://github.com/udayblog/public_cloud.git</description>
+    </item>
+    
+  </channel>
+</rss>
