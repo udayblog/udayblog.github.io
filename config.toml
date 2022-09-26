@@ -2,9 +2,7 @@ baseURL = "https://udayblog.netlify.app/"
 languageCode = "en-GB"
 title = "Thoughts & Learnings"
 theme="archie"
-# theme="m10c"
 copyright = "© Uday"
-# Code Highlight
 pygmentsstyle = "monokai"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
@@ -21,7 +19,7 @@ paginate=9 # articles per page
 [[params.social]]
 name = "GitHub"
 icon = "github"
-url = ""
+url = "https://github.com/udayblog"
 
 [[params.social]]
 name = "Twitter"
