@@ -104,7 +104,21 @@ Now if you try to fetch, remote branches will appear as below</p>
 </span></span><span style="display:flex;"><span> * <span style="color:#f92672">[</span>new branch<span style="color:#f92672">]</span>      main       -&gt; origin/main</span></span></code></pre></div>
 </div>
 <p>
-Above commands can be aliased to a single command as per your convenience.</p>
+Above commands can be aliased to a single command as per your convenience. A simple example is to add the below to your ~/.bashrc or ~/.zshrc</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>func gclone<span style="color:#f92672">(){</span>
+</span></span><span style="display:flex;"><span>    git clone --bare $1 bare
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;gitdir: ./bare&#34;</span> &gt; .git
+</span></span><span style="display:flex;"><span>    git config remote.origin.fetch <span style="color:#e6db74">&#34;+refs/heads/*:refs/remotes/origin/*&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+</div>
+<p>
+Now you can simply invoke the following commands</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir beautiful_proj
+</span></span><span style="display:flex;"><span>cd beautiful_proj
+</span></span><span style="display:flex;"><span>gclone &lt;git repo url&gt;</span></span></code></pre></div>
+</div>
 
 		</section>
 
@@ -124,7 +138,7 @@ Above commands can be aliased to a single command as per your convenience.</p>
 	</article>
 </main>
 <footer>
-  <div style="display:flex"><a class="soc" href="" title="GitHub"><i data-feather="github"></i></a>
+  <div style="display:flex"><a class="soc" href="https://github.com/udayblog" title="GitHub"><i data-feather="github"></i></a>
     <a class="border"></a><a class="soc" href="" title="Twitter"><i data-feather="twitter"></i></a>
     <a class="border"></a></div>
   <div class="footer-info">

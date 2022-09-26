@@ -57,7 +57,8 @@
 		
 
 		<section class="body">
-			<p>
+			
+<p>
 It is a common requirement to scale applications deployed on Kubernetes. This post targets on how to leverage Azure built in features to configure horizontal pod autoscaling. Usually, the infrastrucre is setup with a mointoring system such as <a href="https://prometheus.io/">https://prometheus.io/</a> [prometheus] and configure custom metric scraping from the applications. However, the focus for this post is to explore the default capabilities provided by Azure platform  to achieve horizontal pod scaling.</p>
 <p>
 <a href="https://keda.sh/">https://keda.sh/</a> [Keda] is an excellent opensource initiative and part of CCNF which will be used in this blog post.</p>
@@ -73,6 +74,11 @@ Create Keda Secret, TriggerAuthetication, ScaledObject</p>
 </div>
 <p>
 Trigger query specified in the ScaledObject will monitor the requests coming to Azure Application Gateway in five minutes intervals. Once those requests exceed the threshold value which is set as 10 in the query, then HPA will scale pods.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Sample heading
+</h2>
+</div>
 
 		</section>
 
@@ -98,7 +104,7 @@ Trigger query specified in the ScaledObject will monitor the requests coming to 
 	</article>
 </main>
 <footer>
-  <div style="display:flex"><a class="soc" href="" title="GitHub"><i data-feather="github"></i></a>
+  <div style="display:flex"><a class="soc" href="https://github.com/udayblog" title="GitHub"><i data-feather="github"></i></a>
     <a class="border"></a><a class="soc" href="" title="Twitter"><i data-feather="twitter"></i></a>
     <a class="border"></a></div>
   <div class="footer-info">
