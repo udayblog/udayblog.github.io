@@ -59,5 +59,6 @@ func gclone(){
 Now you can simply invoke the following commands
 #+begin_src shell
 mkdir beautiful_proj
+cd beautiful_proj
 gclone <git repo url>
 #+end_src
