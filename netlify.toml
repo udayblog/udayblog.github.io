@@ -35,3 +35,6 @@ HUGO_ENABLEGITINFO = "true"
 from = "/npmjs/*"
 to = "/npmjs/"
 status = 200
+
+[build.processing]
+    skip_processing = true
