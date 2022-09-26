@@ -45,4 +45,19 @@ From github.com:udayblog/public_cloud
  * [new branch]      main       -> origin/main
 #+end_src
 
-Above commands can be aliased to a single command as per your convenience.
+Above commands can be aliased to a single command as per your convenience. A simple example is to add the below to your ~/.bashrc or ~/.zshrc
+
+#+begin_src shell
+func gclone(){
+    git clone --bare $1 bare
+    echo "gitdir: ./bare" > .git
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+}
+
+#+end_src
+
+Now you can simply invoke the following commands
+#+begin_src shell
+mkdir beautiful_proj
+gclone <git repo url>
+#+end_src

@@ -20,3 +20,5 @@ kubectl apply -f https://raw.githubusercontent.com/udayblog/public_cloud/main/az
 #+end_src
 
 Trigger query specified in the ScaledObject will monitor the requests coming to Azure Application Gateway in five minutes intervals. Once those requests exceed the threshold value which is set as 10 in the query, then HPA will scale pods.
+
+* Sample heading
