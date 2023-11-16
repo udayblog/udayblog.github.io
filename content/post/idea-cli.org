@@ -1,4 +1,5 @@
 #+title: Idea CLI
+#+date: <2023-11-16 Thu>
 
 Simpe tip to open IntelliJ IDEA from the CLI in a projet diretory. Create bash function in user shell profile as below
 
