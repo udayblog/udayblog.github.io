@@ -1,0 +1,14 @@
+#+title: Idea CLI
+
+Simpe tip to open IntelliJ IDEA from the CLI in a projet diretory. Create bash function in user shell profile as below
+
+#+begin_src shell
+func idea(){
+    open -na "IntelliJ IDEA CE.app" --args "$@"
+}
+#+end_src
+
+ With above in place, simply type below to open project
+ #+begin_src bash
+idea .
+ #+end_src
