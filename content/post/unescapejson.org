@@ -1,0 +1,7 @@
+#+title: Unescapejson
+#+date: <2024-02-27 Tue>
+
+
+#+begin_src bash
+jq -r '.message' input.json | jq
+#+end_src

@@ -1,0 +1,4 @@
+#+title: Sample TestContainers setup for Kafka integration testing
+#+date: <2024-02-27 Tue>
+
+Prep blog post on testcontainers and kafka in a spring boot application
