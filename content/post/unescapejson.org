@@ -1,7 +1,10 @@
 #+title: Unescapejson
 #+date: <2024-02-27 Tue>
 
+jq is a great utility when dealing with json content. Sometimes one end up with looking at json content escaped as string and will become too cumbersome to read/process contents
+For example, if you are using structured logging in your applications, you would often end up in this situation.
 
+jq comes to rescue in such situtations. An example command to deal with escaped json string is below
 #+begin_src bash
 jq -r '.message' input.json | jq
 #+end_src
