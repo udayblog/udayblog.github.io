@@ -1,4 +1,51 @@
 #+title: Sample TestContainers setup for Kafka integration testing
 #+date: <2024-02-27 Tue>
 
-Prep blog post on testcontainers and kafka in a spring boot application
+In this post, let's explore on how to setup Kafka containers for integrtion testing.
+Testcontainers facilitate a great way to spin up docker containers to perform intergation tests. As always, I would not go into the details of TestContainers benefits. Kafka is a popular or I would say has emerged as the defacto standard in the event driven architecture domain.
+
+
+Setting up Kafka container is as simple as adding the required dependency to your project. For maven, it looks like below
+
+#+begin_src xml
+<dependency>
+  <groupId>org.testcontainers</groupId>
+  <artifactId>kafka</artifactId>
+  <version>${testcontainers.version}</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.testcontainers</groupId>
+  <artifactId>junit-jupiter</artifactId>
+  <version>${testcontainers.version}</version>
+  <scope>test</scope>
+</dependency>
+
+#+end_src
+
+and then add the below to spin up Kafka container in the integration test
+
+#+begin_src java
+ KafkaCongtainer kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.6.0"));
+ kafkaContainer.start();
+
+#+end_src
+
+In order to inject the Kafka container address in spring context, use *DynamicPropertySource* annotation to override the broker address as below
+
+#+begin_src java
+@DynamicPropertySource
+static void registerKafkaProperties(DynamicPropertyRegistry registry) {
+   registry.add("spring.kafka.bootstrap-servers", () -> kafkaContainer::getBootstrapServers);
+}
+#+end_src
+
+The next question would be, how would one create a topic  so that the application can either produce messages to or a consumer can consume messages from. Below should set up a test topic
+
+#+begin_src java
+kafkaContainer.execInContainer("kafka-topics.sh --bootstrap-server localhost:9092 --topic test_topic --create --partitions 3 --replication-factor 1");
+#+end_src
+
+and the name of the topic can be injected to the test context using *DynamicPropertySource* annotation
+
+Now the Kafka container is setup for integration tests.
